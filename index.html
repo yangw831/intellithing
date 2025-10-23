@@ -1,1 +1,598 @@
-hello, intellithing.com!
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>IntelliThing: Artificial Intelligence Consulting</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,300,200,100italic,100,800' rel='stylesheet' type='text/css'>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<header class="top-header">
+  <div class="container">
+    <div class="col-md-4 col-sm-5 col-xs-8"><a href="#"><img class="img-responsive" src="images/logo.png" alt="#"></a></div>
+    <button class="btn btn-primary contact pull-right" type="submit" data-toggle="modal" data-target="#myModal">Contact</button>
+
+    <!-- Modal -->
+
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><img src="images/close.png" alt="#"></button>
+            <h4 class="modal-title">Contact Us</h4>
+          </div>
+          <div class="modal-body contact">
+            <div class="row">
+              <div class="col-md-12">
+                <form class="form-horizontal" role="form" name="contact" id="contactForm" method="post">
+                  <fieldset>
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                      <div class="col-sm-6">
+                        <input type="text" name="name" placeholder="Your Name" class="form-control new" id="name">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="phone"  placeholder="Phone Number" class="form-control new" id="phone">
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                      <div class="col-sm-12">
+                        <input type="text" name="email" placeholder="Email Address" class="form-control new" id="email">
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                      <div class="col-sm-6">
+                        <select class="form-control new" name="subject" id="subject">
+                          <option>Subject</option>
+                          <option>Questionss</option>
+                          <option>Comments</option>
+                          <option>Product</option>
+                          <option>Business</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-6">
+                        <select class="form-control new" name="device" id="device">
+                          <option>Device</option>
+                          <option>iOS</option>
+                          <option>Android</option>
+                          <option>Others</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                      <div class="col-sm-12">
+                        <textarea rows="2" cols="50" name="message" id="message" placeholder="Type your message here"></textarea>
+                      </div>
+                    </div>
+                    <div class="button-center">
+                      <button class="btn btn-primary form-btn" id='buttonId'  type="submit">SUBMIT</button>
+                    </div>
+                    <div id="div1"> </div>
+                  </fieldset>
+                </form>
+              </div>
+
+              <!-- /.col-lg-12 -->
+
+            </div>
+
+            <!-- /.row -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div id="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1 col-sm-hidden col-xs-hidden"></div>
+      <div class="col-md-6 col-sm-6">
+        <h1>Artificial Intelligence Strategies</h1>
+        <!-- <p><b>Welcome to the Deep Learning Epoch!</b></p> -->
+        <!--<p>Need image segmentation, or natural language processing? IntelliThing can help you! Check out our <a href="wordpress/blog"><i><b>blog posts</b></i></a>.</p> -->
+        <p><B>Need business and product strategies around Generative AI? IntelliThing can help you - everything chatGPT, Large Language Model (LLMs), and Stable Diffusion. Check out <a href="https://www.gehealthcare.com/en/products/edison/applications"><u>Edison AI Services</u></a> we advised at GE HealthCare.</B></p>
+        <!--<h3 style="color: #045fcb;">A #1 ranked camera App that uses <b>Deep Learning</b> for text classification on 2D images: <a href="https://itunes.apple.com/us/app/powerball-mega-millions-scan/id1102553968?mt=8"><u>Download on App Store</u></a></h3> -->
+        <!-- <h3>A #1 ranked camera App based on Deep Net for text classification on 2D images: <a href="https://itunes.apple.com/us/app/powerball-mega-millions-scan/id1102553968?mt=8"><u>Download on App Store</u></a></h3> -->
+        <!--
+        <h3 style="color: #045fcb;">A #1 ranked <a href="https://itunes.apple.com/us/app/powerball-mega-millions-scan/id1102553968?mt=8"><u>camera App</u></a> that uses TensorFlow and CNN for image segmentation and object detectection on 2D images: <a href="https://itunes.apple.com/us/app/powerball-mega-millions-scan/id1102553968?mt=8"><u>Download on App Store</u></a></h3>
+        <p>Subscribe our mailing list to receive white papers:</p>
+        <h3 style="color: #045fcb;">Subscribe our mailing list to receive white papers:</h3>
+
+        <p><b>Introducing SmartCaptain Mobile App!</b></p>
+
+
+        <p>Increase the odd of hitting Jackpots by pooling lottery tickets. And let SmartCaptain take care of daily works while you enjoy the excitement with pool members together. SmartCaptain Mobile App brings more fun, social, and science to you!</p>
+      -->
+
+        <form class="form-horizontal" role="form"  method="post" name="form1" id="form1">
+          <input type="text" name="nl-email" required="true" placeholder="Email Address: subscribe to receive white papers" class="form-control new" id="nl-email">
+          <div class="button-center">
+            <button class="btn btn-primary download " type="submit" id="btn-subscribe"  data-target="subscribeModal">Subscribe</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-4 col-sm-6 phone-img">
+        <!--<div class="phone-area"><a href="#"><img class="img-responsive" src="images/re-3.png" alt="#"></a>-->
+     <!--<div class="phone-area"><a href="#"><img class="img-responsive" src="images/1-304.png" alt="#"></a>-->
+     <!--
+     <div class="phone-area"><a href="#"><img class="img-responsive" src="images/ai.png" alt="#"></a>
+     -->
+        <!--
+          <div class="phone-txt">
+            <h3>Manage Your Lottery Pool </h3>
+            <div class="divider"></div>
+            <p>Enjoy big Jackpot dreams with your pool members!  Let SmartCaptain take care of everything else.</p>
+          </div>
+        </div>
+          -->
+      </div>
+      <div class="col-md-1 col-sm-hidden col-xs-hidden"></div>
+    </div>
+  </div>
+</div>
+<div id="how-it-works">
+  <div class="container">
+    <div class="row">
+      <h1>AI Only Services</h1>
+      <!--
+      <div class="col-md-4 col-sm-4"> <span>1</span>
+        <h3>Paper Implementation</h3>
+        <p>On your smart phone, create a pool and indicate what lottery games you want to play. Advance options also allow you to specify that whether this pool is for one-time jackpot or on-going. </p>
+      </div>
+      -->
+      <!-- <div class="col-md-4 col-sm-4"> <img src="images/cropped-cvf-s.jpg" alt="#" width="134" height="86"> -->
+      <!--
+    <div class="col-md-4 col-sm-4"><img src="images/visa-1.png" alt="#" width="134" height="86"> 
+        <h3>chatGPT</h3>
+        <p>How to develop and implement Generative AI strategy? We advised Large Language Model initiatives at Visa, and we may help you too!</p>
+      </div>
+      -->
+      <div class="col-md-4 col-sm-4"> <img src="images/kp.png" alt="#" width="86" height="86">
+        <h3>AI On Premise</h3>
+        <p>Beyond infrastrcture and platforms, we help Kaiser Permanente to establish strategies, standards, and ecosystem to power AI for Health Care.</p>
+      </div>
+      <div class="col-md-4 col-sm-4"> <img src="images/JohnsonControls.png" alt="#" width="200" height="86"> 
+        <h3>Smart Building</h3>
+        <p>LSTM, Double Deep Q-Learning, Policy Gradient. We help JCI to provide <a href="https://www.johnsoncontrols.com/media-center/news/press-releases/2019/04/23/middle-east-sustainability-pioneer-bee-ah-selects-johnson-controls-microsoft-for-office-of-future">Office of the Future</a> solutions for the Middle East's Bee'ah. </p>
+      </div>
+      <!--
+      <div class="col-md-4 col-sm-4"> <img src="images/TensorFlowLogo.png" alt="#" width="134" height="86"> 
+        <h3>Paper to Product</h3>
+        <p>CNN, RNN, LSTM, Deep Q-Learning may perform better than existing odels? We can prototype Deep Learning algorithms rapidly. </p>
+      </div>
+      -->
+      <!--<div class="col-md-4 col-sm-4"><img src="images/2000px-Amazon_Web_Services_Logo.svg.png" alt="#" width="134" height="86"> -->
+    <div class="col-md-4 col-sm-4"><img src="images/ge-healthcare-2.jpg" alt="#" width="134" height="86"> 
+        <h3>AI In Cloud</h3>
+        <p>How to develop and implement AI strategy? We help launching <a href="https://www.gehealthcare.com/en/products/edison/applications">Edison AI Service</a> at GE HealthCare, and we may help you too!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="video-section">
+  <div class="container">
+    <div class="row">
+        <h1>AI Success Stories</h1>
+      <div class="col-md-4 col-sm-4"><img src="images/pne_circle.png" alt="#" width="86" height="86"> 
+        <h3>Image Generation</h3>
+        <p>A Diffusion generative model for the GE HealthCare. It localizes lung diseases on Xray images. Demoed @ <a href="https://www.news-medical.net/news/20181125/GE-Healthcare-showcases-new-Edison-applications-and-Edison-powered-devices-at-RSNA-2018.aspx"><u>RSNA 2018</u></a></p>
+        <br>
+      </div>
+      <div class="col-md-4 col-sm-4"> <img src="images/clinical-notes.png" alt="#" width="134" height="86"> 
+        <h3>Large Language Model</h3>
+        <p>A Transformer architecture and self-supervised Learning combined approach to understand clinical notes.</p>
+        <br>
+      </div>
+      <div class="col-md-4 col-sm-4"> <img src="images/unibap_sense.png" alt="#" width="134" height="86">
+        <h3>Deep Reinforcement Learning</h3>
+        <p>A Deep RL agent keeps business buildings' energy consumption economic yet maintains residents comfortability.</p>
+        <br>
+      </div>
+    <!--
+    <div class="video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/ZAeaTIWqDe4" frameborder="0" allowfullscreen></iframe>
+    </div>
+    -->
+    </div>
+  </div>
+</div>
+<!--
+<div id="pggan">
+  <div class="container">
+    <h1 style="font-family: Raleway;font-weight: 400;margin: 60px 0 5px;text-align: center;">Progressive Growing of GANs</h1>
+    <div class="row">
+      <div class="col-md-4 col-sm-4"><img src="images/pggan.png" alt="#" width="1341" height="447">
+      </div>
+    <br>
+    </div>
+    <br>
+  </div>
+  <br>
+</div>
+-->
+<div id="survey-section">
+  <div class="container">
+      <h1 style="font-family: Raleway;font-weight: 400;margin: 60px 0 5px;text-align: center;">Please Complete Survey</h1>
+      <h4 class="modal-title">
+        <span>What Help Do You Need From Us?</span></h4>
+      <div class="contact">
+        <form action="" method="post">
+
+                <div class="checkbox checkbox-success clearfix">
+                <!--
+                  <div class="col-md-6 check-list">
+                    <input id="checkbox3" class="styled" type="checkbox" name="checkbox3" value="track member payment">
+                    <label for="checkbox3">track member payment</label>
+                  </div>
+                  -->
+                  <div class="col-md-6 check-list">
+                    <input id="checkbox4" class="styled" type="checkbox" name="checkbox4" value="Progressive Growing of GANs">
+                    <label for="checkbox4">Progressive Growing of GANs</label>
+                  </div>
+                  <div class="col-md-6 check-list">
+                    <input id="checkbox5" class="styled" type="checkbox" name="checkbox5"  value="Large Language Model (LLMs)" >
+                    <label for="checkbox5">Large Language Model (LLMs)</label>
+                  </div>
+                  <div class="col-md-6 check-list">
+                    <input id="checkbox6" class="styled" type="checkbox" name="checkbox6" value="pattern recognition">
+                    <label for="checkbox6">pattern recognition</label>
+                  </div>
+                  <div class="col-md-6 check-list">
+                    <input id="checkbox7" class="styled" type="checkbox" name="checkbox7" value="Stable Diffusion">
+                    <label for="checkbox7">Stable Diffusion</label>
+                  </div>
+                  <div class="col-md-6 check-list">
+                    <input id="checkbox8" class="styled" type="checkbox" name="checkbox8" value="chatGPT">
+                    <label for="checkbox8">chatGPT</label>
+                  </div>
+                  <div class="col-md-6 check-list">
+                    <input id="checkbox9marker" class="styled" type="checkbox" name="checkbox9marker" value="others" onclick="othersFunc()">
+                    <label for="checkbox9marker"><div id="checkbox9field">others</div></label>
+                  </div>
+                  <script>
+                  function othersFunc() {
+                    if (document.getElementById('checkbox9marker').checked) {
+                      document.getElementById('checkbox9field').innerHTML = '<input id="checkbox9" type="text" class="form-control" name="checkbox9" value="Others: " placeholder="Others: " /> ';
+                    }
+                    else {
+                      document.getElementById('checkbox9field').innerHTML = 'others';
+                    }
+                  }
+                  </script>
+                </div>
+                <div class="button-center">
+					         <input type="submit" class="btn btn-primary form-btn " id="checkbox_submit" value="SUBMIT">
+                </div>
+
+		  </form>
+      </div>
+  </div>
+</div>
+<div id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 about">
+      <h1>IntelliThing</h1>
+      <p>IntelliThing's team members have 20+ years combine experience in Data Science, Artificial Intelligence, Deep Learnig, Computer Vision, Natual Language Processing, Machine Learning, and Pattern Recognition. We are based off San Francisco bay area. Checkout our latest technical blog posting <a href="wordpress/blog">here</a> and <a href="mailto:info@intellithing.com">signup</a> for success stories today!</p>
+      </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3 col-sm-4 social">
+      <h1>Intelligent Businesses</h1>
+      <h2>want IntelliThing</h2>
+      <p>Questions? Check out the FAQ or email us <a href="mailto:info@intellithing.com">info@intellithing.com</a></p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3 col-sm-4 link">
+      <ul class="list-unstyled">
+        <li><a href="#">Download White Paper</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Terms &amp; Services</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+      <div class="col-md-12 social">
+        <div class="row">
+          <ul class="list-inline">
+            <li><a href="#"><img src="images/facebook.png" alt="#"></a></li>
+            <li><a href="#"><img src="images/twitter.png" alt="#"></a></li>
+            <li><a href="#"><img src="images/youtube.png" alt="#"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 about">
+       <span>© 2018-2025 IntelliThing Inc. All Rights Reserved.</span>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Modal -->
+<div id="surveyModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="subscribeTitle">Subscribed</h4>
+      </div>
+      <div class="modal-body contact">
+        <h4 id="subscribeMessage">Thank you for subscribing to mailing list.</h4>
+        <div class="button-center">
+          <input type="submit" class="btn btn-primary form-btn" data-dismiss="modal" value="OK">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="complete_surveyModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="complete_subscribeTitle">Survey</h4>
+      </div>
+      <div class="modal-body contact">
+        <h4 id="complete_subscribeMessage">Thank you for completing survey</h4>
+        <div class="button-center">
+          <input type="submit" class="btn btn-primary form-btn" data-dismiss="modal" value="OK">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Include all compiled plugins -->
+<script src="js/bootstrap.min.js"></script>
+<script>
+function subscribeEmail() {
+	var email = $("#nl-email").val();
+	if(email == '')
+	{
+		$("#subscribeTitle").html('Sorry');
+		$("#subscribeMessage").html('Email Address required. Please Try Again.');
+		$("#surveyModal").modal('toggle');
+		document.form1.nl-email.focus();
+		return false;
+	}
+	else
+	{
+		var atpos = email.indexOf("@");
+		var dotpos = email.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+3 || dotpos+3>=email.length)
+		{
+			$("#subscribeTitle").html('Sorry');
+		$("#subscribeMessage").html('Email Address is invalid.');
+		$("#surveyModal").modal('toggle');
+			document.form1.nl-email.focus();
+			return false;
+		}
+else
+{
+$.ajax({
+
+	type: "POST",
+	url: "nl-subscribe.php",
+	data: {"nl-email":email},
+
+	success: function(result) {
+	  if (result == 1) {
+		$("#subscribeTitle").html('Subscribed');
+		$("#subscribeMessage").html('Thank you for subscribing to Artificial Intelligence Mailing List');
+		$("#surveyModal").modal('toggle');
+	  }
+	  else {
+		$("#subscribeTitle").html('Sorry');
+		$("#subscribeMessage").html('Please Try Again.');
+		$("#surveyModal").modal('toggle');
+	  }
+
+	}
+
+	});
+}
+	}
+
+}
+
+$('#btn-subscribe').on('click', function(event) {
+  event.preventDefault();
+  subscribeEmail();
+
+});
+
+/* contact form action */
+$('#buttonId').on( 'click', function () {
+
+  var name = $('#name').val();
+  var email = $('#email').val();
+  var phone = $('#phone').val();
+  var subject = $('#subject').val();
+  var device = $('#device').val();
+  var message = $('#message').val();
+
+		  $.ajax({
+		   type: "POST",
+		   url: "contact_action.php",
+		     data:{"name":name,"email":email,"phone":phone,"subject":subject,"device":device,"message":message},
+		   success: function(result){
+		    if(result==1){
+		  		//alert("mail  sent");
+				$("#div1").html('<label class="modal-title"style="color:green;font-size:20px">Thanks for contact us. We will revert back to you shortly... </label>');
+				$('#name').val("");
+				$('#email').val("");
+				$('#phone').val("");
+				$('#subject').val("");
+				$('#device').val("");
+				$('#message').val("");
+		  	}
+		  	else{
+				alert("mail not sent");
+				$("#div1").html('mail not sent');
+		  	}
+		   //  $("#div1").html(result);
+		  }
+		});
+   // either call do_save or embed the contents of do_save in here
+
+   var myDataIsValid = true; // change to call validator function
+   if (myDataIsValid) {
+     	//$('#myModal').modal('hide');
+  		return false;
+   }
+   //return true; // value depends on whether you want stopPropagation or not.
+});
+
+
+
+
+
+
+
+$('#checkbox_submit').on( 'click', function (event) {
+  event.preventDefault();
+
+//alert("submit form");
+	if ($('#checkbox3').is(":checked"))	{
+	 var checkbox3 		= $('#checkbox3').val();
+	}
+	if ($('#checkbox4').is(":checked"))	{
+	 var checkbox4 		= $('#checkbox4').val();
+	}
+	if ($('#checkbox5').is(":checked"))	{
+	 var checkbox5 		= $('#checkbox5').val();
+	}if ($('#checkbox6').is(":checked"))	{
+	 var checkbox6 		= $('#checkbox6').val();
+	}if ($('#checkbox7').is(":checked"))	{
+	 var checkbox7 		= $('#checkbox7').val();
+	}if ($('#checkbox8').is(":checked"))	{
+	 var checkbox8 		= $('#checkbox8').val();
+	}if ($('#checkbox9marker').is(":checked"))	{
+	 var checkbox9 		= $('#checkbox9').val();
+	}
+
+
+
+
+
+	$.ajax({
+		type: "POST",
+		url: "checkbox_action.php",
+		data:{"checkbox3":checkbox3,"checkbox4":checkbox4,"checkbox5":checkbox5,"checkbox6":checkbox6,"checkbox7":checkbox7,"checkbox8":checkbox8,"checkbox9":checkbox9},
+		success: function(result){
+
+
+			if(result==1){
+				$("#complete_subscribeTitle").html('Survey');
+				$("#complete_subscribeMessage").html('Thank you for completing survey');
+				$("#complete_surveyModal").modal('toggle');
+
+			}
+			else {
+
+				$("#complete_subscribeTitle").html('Sorry');
+				$("#complete_subscribeMessage").html('Please Try Again.');
+				$("#complete_surveyModal").modal('toggle');
+			}
+		}
+		});
+	});
+
+</script>
+
+<script>
+$('#buttonId').on( 'click', function () {
+
+	 var name 		= $('#name').val();
+	 var email 		= $('#email').val();
+	 var phone 		= $('#phone').val();
+	 var subject	= $('#subject').val();
+	 var device 	= $('#device').val();
+	 var message	= $('#message').val();
+
+
+	$.ajax({
+	 type: "POST",
+	 url: "contact_action.php",
+
+     data:{"name":name,"email":email,"phone":phone,"subject":subject,"device":device,"message":message},
+
+
+
+ 	success: function(result){
+
+
+
+	if(result==1){
+
+		$("#div1").html('<label class="modal-title"style="color:green;font-size:20px">Thanks for contact us. We will revert back to you shortly... </label>');
+		$('#name').val("");
+		$('#email').val("");
+		$('#phone').val("");
+		$('#subject').val("");
+		$('#device').val("");
+		$('#message').val("");
+
+	}
+	else {
+
+		$("#div1").html('mail not send');
+	}
+				//	$("#div1").html(result);
+        }});
+
+
+	//alert("hello");
+
+
+
+   // either call do_save or embed the contents of do_save in here
+   var myDataIsValid = true; // change to call validator function
+   if (myDataIsValid) {
+     //$('#myModal').modal('hide');
+	return false;
+   }
+   //return true; // value depends on whether you want stopPropagation or not.
+});
+</script>
+
+<?php include_once("analyticstracking.php") ?>
+</body>
+</html>
