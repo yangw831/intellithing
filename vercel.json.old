@@ -1,6 +1,0 @@
-{
-  "redirects_removed": [
-    { "source": "/", "destination": "https://stabilerewards.com", "permanent": true },
-    { "source": "/index.html", "destination": "https://stabilerewards.com", "permanent": true }
-  ]
-}
