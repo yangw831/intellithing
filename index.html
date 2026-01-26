@@ -231,7 +231,43 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<!-- Lighten Background Neural Network Image -->
+<style>
+/* Add white overlay to banner background to make it lighter/whiter like on mobile */
+#banner {
+  position: relative;
+}
 
+#banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.25); /* White overlay at 25% opacity */
+  z-index: 1;
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+#banner .container {
+  position: relative;
+  z-index: 2; /* Brings content above the overlay */
+}
+
+/* Optional: Ensure text colors work well on lightened background */
+#banner h1 {
+  color: #0066cc; /* Keep the blue heading */
+}
+
+#banner p {
+  color: #333; /* Dark text for better readability on light background */
+}
+
+#banner a {
+  color: #0066cc; /* Blue links */
+}
+</style>
 </head>
 
 <body>
