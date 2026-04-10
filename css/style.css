@@ -436,6 +436,12 @@ input[type="checkbox"] .styled:checked + label::after, input[type="radio"] .styl
 	background: #f7f7f7;
 	text-align: center;
 }
+#video-section .img-container {
+	height: 90px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 #video-section h1 {
 	font-family: Raleway;
 	font-weight: 400;
