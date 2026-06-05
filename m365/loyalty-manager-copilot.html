@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loyalty Manager Copilot AI | IntelliThing</title>
+    <meta
+      name="description"
+      content="Loyalty Manager Copilot AI helps loyalty teams diagnose program issues, walk through guided operational workflows, and prepare executive-ready insights inside Microsoft 365 Copilot."
+    />
+    <link rel="canonical" href="https://www.intellithing.com/m365/loyalty-manager-copilot.html" />
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --ink: #162033;
+        --muted: #5d6b82;
+        --line: #dbe2ec;
+        --brand: #0f766e;
+        --brand-dark: #0b5a54;
+        --accent: #1d4ed8;
+        --soft: #e8f4f2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(180deg, #eff6ff 0%, var(--bg) 34%, #ffffff 100%);
+        color: var(--ink);
+        line-height: 1.6;
+      }
+
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 20px 72px;
+      }
+
+      .hero {
+        padding: 64px 0 28px;
+      }
+
+      .eyebrow-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .eyebrow-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .app-icon {
+        height: 48px;
+        width: 48px;
+        border-radius: 12px;
+        display: block;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--soft);
+        color: var(--brand-dark);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .eyebrow-logo {
+        height: 28px;
+        width: auto;
+        display: block;
+      }
+
+      h1 {
+        margin: 18px 0 14px;
+        font-size: clamp(34px, 6vw, 56px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .lead {
+        max-width: 760px;
+        font-size: 19px;
+        color: var(--muted);
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--brand-dark);
+      }
+
+      .btn-secondary {
+        background: #fff;
+        color: var(--accent);
+        border: 1px solid var(--line);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 14px 40px rgba(22, 32, 51, 0.05);
+      }
+
+      .span-12 { grid-column: span 12; }
+      .span-6  { grid-column: span 6; }
+      .span-4  { grid-column: span 4; }
+      .span-7  { grid-column: span 7; }
+      .span-5  { grid-column: span 5; }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 28px;
+        line-height: 1.2;
+      }
+
+      h3 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+
+      p {
+        margin: 0 0 12px;
+      }
+
+      ul, ol {
+        margin: 12px 0 0 20px;
+        padding: 0;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .kicker {
+        color: var(--brand-dark);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .mini {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 20px;
+      }
+
+      .flow {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .step {
+        background: #f8fafc;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 16px;
+      }
+
+      .step strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .footer {
+        margin-top: 36px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (max-width: 820px) {
+        .span-6,
+        .span-4,
+        .span-7,
+        .span-5 {
+          grid-column: span 12;
+        }
+
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div class="eyebrow-row">
+          <div class="eyebrow-left">
+            <img class="app-icon" src="../images/loyalty-manager-copilot-icon.png" alt="Loyalty Manager Copilot AI" />
+            <span class="eyebrow">Microsoft 365 Copilot Agent</span>
+          </div>
+          <a href="https://www.intellithing.com/">
+            <img class="eyebrow-logo" src="../images/logo.png" alt="IntelliThing" />
+          </a>
+        </div>
+        <h1>Loyalty Manager Copilot AI</h1>
+        <p class="lead">
+          A guided Copilot experience for loyalty managers who need to diagnose issues, preview operator workflows,
+          and shape how automation should work before live integrations are turned on.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://www.intellithing.com/#contact">Request a Demo</a>
+          <a class="btn btn-secondary" href="https://www.intellithing.com/#contact">Join Premium Interest List</a>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="Overview">
+        <article class="card span-6">
+          <p class="kicker">Who It Is For</p>
+          <h2>Built for loyalty managers and operations teams</h2>
+          <p>
+            Loyalty Manager Copilot AI is designed for teams responsible for program health, member issue handling,
+            campaign execution, and day-to-day loyalty operations inside Microsoft 365.
+          </p>
+          <ul>
+            <li>Loyalty program managers</li>
+            <li>CRM and retention leads</li>
+            <li>Operations and support teams</li>
+            <li>Commerce and customer experience stakeholders</li>
+          </ul>
+        </article>
+
+        <article class="card span-6">
+          <p class="kicker">What It Does</p>
+          <h2>Turns issue handling into a guided Copilot workflow</h2>
+          <p>
+            Instead of throwing users into backend terminology, the agent walks them through a practical issue flow,
+            asks a small number of implementation-shaping questions, and then demonstrates how the operator workflow
+            would behave in a real environment.
+          </p>
+          <ul>
+            <li>Diagnose a realistic loyalty issue</li>
+            <li>Capture workflow preferences and approvals</li>
+            <li>Use synthetic sample data when live sources are not connected</li>
+            <li>Simulate execution and show before/after state</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid" aria-label="Capabilities" style="margin-top: 20px;">
+        <article class="card span-4">
+          <h3>Operational issue handling</h3>
+          <p>
+            Guide users through common issue categories such as missing points, redemption problems, points balance
+            corrections, and campaign or journey trigger failures.
+          </p>
+        </article>
+
+        <article class="card span-4">
+          <h3>Transparent live mock workflows</h3>
+          <p>
+            The agent is clear about what is simulated, what requires premium integration, and when sample data is
+            being used for demonstration.
+          </p>
+        </article>
+
+        <article class="card span-4">
+          <h3>Requirements discovery</h3>
+          <p>
+            Every guided step helps define the real automation design, including source systems, approval rules,
+            escalation preferences, and premium readiness.
+          </p>
+        </article>
+      </section>
+
+      <section class="grid" aria-label="Live Demo Today" style="margin-top: 20px;">
+        <article class="card span-12">
+          <div class="two-col">
+            <div>
+              <p class="kicker">Live Demo Today</p>
+              <h2>The current guided workflow focuses on loyalty issue resolution</h2>
+              <p>
+                The current live preview is centered on <strong>Fix missing points or redemption</strong>. This lets teams
+                experience the full operator pattern end to end before broader workflows are added.
+              </p>
+              <p>Additional workflows are being expanded next:</p>
+              <ul>
+                <li>Refresh a customer segment</li>
+                <li>Correct a points balance issue</li>
+                <li>Fix a campaign or journey that did not trigger</li>
+              </ul>
+            </div>
+            <div class="card" style="background:#f8fbff;">
+              <h3>What the live preview shows</h3>
+              <ul>
+                <li>Operator-friendly issue intake</li>
+                <li>Source-system and approval questions</li>
+                <li>Transparent premium integration notices</li>
+                <li>Realistic sample data structures</li>
+                <li>Execution approval prompt</li>
+                <li>Synthesized before/after proof</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid" aria-label="How It Works" style="margin-top: 20px;">
+        <article class="card span-7">
+          <p class="kicker">How It Works</p>
+          <h2>A simple Copilot flow that feels operational, not abstract</h2>
+          <div class="flow">
+            <div class="step">
+              <strong>1. Choose the issue to fix</strong>
+              The user starts with plain-language issue types instead of technical backend categories.
+            </div>
+            <div class="step">
+              <strong>2. Answer a few workflow questions</strong>
+              The agent asks about data sources, sample-data fallback, approval behavior, and goodwill handling.
+            </div>
+            <div class="step">
+              <strong>3. Review the proposed action</strong>
+              The agent presents what it found and what it would do as an operator.
+            </div>
+            <div class="step">
+              <strong>4. Approve simulated execution</strong>
+              The workflow asks for approval where appropriate and then simulates the fix.
+            </div>
+            <div class="step">
+              <strong>5. See before and after results</strong>
+              The user gets a synthesized view of what changed so the workflow feels concrete and credible.
+            </div>
+          </div>
+        </article>
+
+        <article class="card span-5">
+          <p class="kicker">Integrations</p>
+          <h2>Designed for Microsoft 365 Copilot and real commerce systems</h2>
+          <p>
+            The workflow is designed to grow into live operational automation with connected systems such as:
+          </p>
+          <ul>
+            <li>Microsoft 365 Copilot</li>
+            <li>Dynamics 365 Commerce</li>
+            <li>Shopify</li>
+            <li>Custom POS or ecommerce systems</li>
+          </ul>
+          <p class="mini">
+            Some direct integrations and live operational capabilities are planned as premium features.
+          </p>
+        </article>
+      </section>
+
+      <section class="grid" aria-label="Installation" style="margin-top: 20px;">
+        <article class="card span-12">
+          <p class="kicker">Installation &amp; Permissions</p>
+          <h2>Available in the Microsoft Teams Store</h2>
+          <p>
+            Loyalty Manager Copilot AI is published by <strong>IntelliThing, Inc.</strong> and available in the
+            Microsoft Teams App Store and Microsoft 365 App Catalog.
+          </p>
+          <p>
+            <strong>IT admin note:</strong> As with all Microsoft 365 Copilot agents, your organization's IT admin
+            may need to approve this app before users can add it. When a user clicks <em>Request approval</em>,
+            the request appears in the M365 Admin Center under
+            <strong>Agents → All agents → Requests</strong>.
+          </p>
+          <p>
+            Permissions requested: <code>identity</code> (identifies the signed-in user) and
+            <code>messageTeamMembers</code> (allows the agent to send response cards in Teams).
+            <strong>No Microsoft Graph write permissions are requested.</strong>
+            The agent cannot read email, calendar, files, or contacts.
+          </p>
+        </article>
+      </section>
+
+      <section class="grid" aria-label="FAQ" style="margin-top: 20px;">
+        <article class="card span-12">
+          <p class="kicker">FAQ</p>
+          <h2>Common questions</h2>
+          <h3>Is this a real production automation engine?</h3>
+          <p>
+            Not yet. The current experience is a guided live mock workflow designed to feel operational while helping
+            define the final production behavior.
+          </p>
+
+          <h3>Does it need live data connections?</h3>
+          <p>
+            No. It can use realistic sample data structures when live integrations are not available, while still
+            capturing how users want the real workflow to behave.
+          </p>
+
+          <h3>What is available today?</h3>
+          <p>
+            The current live workflow centers on missing points or redemption handling, with additional issue workflows
+            being expanded.
+          </p>
+
+          <h3>How do premium features fit in?</h3>
+          <p>
+            Premium capabilities are expected to include direct system integrations, richer operational workflows, and
+            broader live action support across loyalty platforms and enterprise systems.
+          </p>
+        </article>
+      </section>
+
+      <section class="grid" aria-label="Call To Action" style="margin-top: 20px;">
+        <article class="card span-12">
+          <p class="kicker">Next Step</p>
+          <h2>See how the workflow would fit your loyalty operations</h2>
+          <p>
+            If you want a walkthrough or early access to premium workflow integrations, reach out and we can help you
+            evaluate the right setup for your environment.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://www.intellithing.com/#contact">Talk to IntelliThing</a>
+            <a class="btn btn-secondary" href="https://www.intellithing.com/m365/privacy-loyalty-manager-copilot.html">Privacy Policy</a>
+          </div>
+          <p class="footer">
+            Support: <a href="mailto:support@intellithing.com">support@intellithing.com</a>
+            &nbsp;·&nbsp;
+            Publisher: <a href="https://www.intellithing.com/">intellithing.com</a>
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

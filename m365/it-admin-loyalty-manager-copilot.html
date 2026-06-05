@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IT Admin Approval Guide - Loyalty Manager Copilot AI</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        margin: 40px auto;
+        max-width: 900px;
+        line-height: 1.6;
+        padding: 0 20px;
+        color: #1f2937;
+      }
+      h1, h2 {
+        color: #111827;
+      }
+      code {
+        background: #f3f4f6;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+      }
+      th, td {
+        border: 1px solid #e5e7eb;
+        padding: 10px 14px;
+        text-align: left;
+      }
+      th {
+        background: #f9fafb;
+        font-weight: 600;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid #0284c7;
+        padding: 12px 16px;
+        margin: 20px 0;
+        border-radius: 0 4px 4px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>IT Admin Approval Guide — Loyalty Manager Copilot AI</h1>
+
+    <p>
+      <strong>Publisher:</strong> IntelliThing, Inc. &nbsp;·&nbsp;
+      <a href="https://www.intellithing.com">intellithing.com</a><br />
+      <strong>App type:</strong> Microsoft 365 Copilot declarative agent<br />
+      <strong>Pricing:</strong> Free
+    </p>
+
+    <div class="note">
+      A user in your organization has requested this app. This page gives you everything
+      you need to evaluate and approve it quickly.
+    </div>
+
+    <h2>What it does</h2>
+    <p>
+      Loyalty Manager Copilot AI is a Copilot agent that helps loyalty managers, CRM teams, and operations
+      staff diagnose loyalty program issues, analyze program performance, and prepare executive-ready reporting
+      — all from a guided conversation inside Microsoft 365 Copilot. No separate backend account or subscription
+      is required.
+    </p>
+    <p>
+      Users authenticate with their existing Microsoft 365 identity. The agent uses sample data when live
+      integrations are not configured and is transparent about this at every step.
+    </p>
+
+    <h2>Who uses it</h2>
+    <p>
+      Loyalty program managers, CRM and retention leads, Shopify store owners, operations teams, and
+      marketing leaders who work within Microsoft 365.
+    </p>
+
+    <h2>Permissions requested and why</h2>
+    <table>
+      <thead>
+        <tr><th>Permission</th><th>Type</th><th>Why it's needed</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>identity</code></td>
+          <td>Microsoft 365 standard</td>
+          <td>Identifies the signed-in user to personalize responses</td>
+        </tr>
+        <tr>
+          <td><code>messageTeamMembers</code></td>
+          <td>Microsoft 365 standard</td>
+          <td>Allows the agent to send response cards within Teams conversations</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>No Microsoft Graph write permissions are requested.</strong> The agent cannot read email,
+      calendar, files, or contacts. It cannot write to any Microsoft 365 service. There is no custom
+      backend API — all processing occurs within Microsoft 365 Copilot.
+    </p>
+
+    <h2>Where data lives</h2>
+    <ul>
+      <li>All data processing occurs within Microsoft 365 Copilot and your organization's Microsoft tenant.</li>
+      <li><strong>No user data is transmitted to or stored by IntelliThing.</strong> This is a declarative agent with no external backend.</li>
+      <li>Any data uploaded by users (such as CSV files) is processed within the Microsoft 365 Copilot conversation context and governed by your tenant's Microsoft data retention policies.</li>
+      <li>Authentication is handled entirely by Microsoft Entra ID. IntelliThing never sees user credentials or tokens.</li>
+    </ul>
+
+    <h2>How to approve</h2>
+    <p>When a user clicks <strong>Request approval</strong> on the app listing, the request appears in the M365 Admin Center.</p>
+    <p><strong>Step 1:</strong> Sign in to <a href="https://admin.cloud.microsoft">admin.cloud.microsoft</a></p>
+    <p><strong>Step 2:</strong> Navigate to either:</p>
+    <ul>
+      <li>
+        <strong>Agents → All agents → Requests</strong> <em>(recommended for Copilot agents)</em><br />
+        <a href="https://admin.cloud.microsoft/#/agents/all/requested">https://admin.cloud.microsoft/#/agents/all/requested</a>
+      </li>
+      <li>
+        <strong>Settings → Integrated apps → Requested apps</strong> <em>(also works)</em><br />
+        <a href="https://admin.cloud.microsoft/#/Settings/IntegratedApps">https://admin.cloud.microsoft/#/Settings/IntegratedApps</a>
+      </li>
+    </ul>
+    <p><strong>Step 3:</strong> Find <strong>Loyalty Manager Copilot AI</strong> by IntelliThing, Inc. and select <strong>Accept request</strong>.</p>
+    <p>Once approved, the app becomes available to the requesting user. You can also deploy it to a broader group from the same screen.</p>
+
+    <h2>Questions or concerns</h2>
+    <table>
+      <tbody>
+        <tr><td>Privacy policy</td><td><a href="https://www.intellithing.com/m365/privacy-loyalty-manager-copilot.html">intellithing.com/m365/privacy-loyalty-manager-copilot.html</a></td></tr>
+        <tr><td>Terms of use</td><td><a href="https://www.intellithing.com/m365/terms-loyalty-manager-copilot.html">intellithing.com/m365/terms-loyalty-manager-copilot.html</a></td></tr>
+        <tr><td>Support</td><td><a href="https://www.intellithing.com/m365/support-loyalty-manager-copilot.html">intellithing.com/m365/support-loyalty-manager-copilot.html</a></td></tr>
+        <tr><td>Contact</td><td><a href="https://www.intellithing.com/#contact">intellithing.com/#contact</a> &nbsp;·&nbsp; <a href="mailto:support@intellithing.com">support@intellithing.com</a></td></tr>
+      </tbody>
+    </table>
+  </body>
+</html>
