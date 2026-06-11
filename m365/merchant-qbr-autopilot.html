@@ -9,6 +9,7 @@
       content="Merchant QBR AutoPilot generates executive-ready QBR scorecards for account managers directly inside Microsoft 365 Copilot and Teams — in minutes, not hours."
     />
     <link rel="canonical" href="https://www.intellithing.com/m365/merchant-qbr-autopilot.html" />
+    <script src="qbr-tracking.js" defer></script>
     <style>
       :root {
         --bg: #f5f7fb;
@@ -185,13 +186,58 @@
 
       .footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
 
+      .install-strip {
+        margin-top: 24px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .install-strip p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+      .copy-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .app-name-chip {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 14px;
+        background: var(--soft);
+        color: var(--brand-dark);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 12px;
+        white-space: nowrap;
+      }
+
+      .btn-copy {
+        font: inherit;
+        font-weight: 600;
+        padding: 9px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--accent);
+        cursor: pointer;
+      }
+      .btn-copy:hover { background: var(--soft); }
+
       @media (max-width: 820px) {
         .span-6, .span-4, .span-7, .span-5 { grid-column: span 12; }
         .two-col { grid-template-columns: 1fr; }
       }
     </style>
   </head>
-  <body>
+  <body data-track-page-view="qbr_page_view" data-track-scroll>
     <main class="wrap">
       <section class="hero">
         <div class="eyebrow-row">
@@ -209,8 +255,32 @@
           directly inside Microsoft 365 Copilot and Teams. In minutes, not hours.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html">Get Started</a>
-          <a class="btn btn-secondary" href="https://www.intellithing.com/m365/it-admin-merchant-qbr-autopilot.html">IT Admin Guide</a>
+          <a class="btn btn-primary" href="#install"
+             data-track="qbr_install_cta_click" data-cta-location="hero_search_teams">
+            Search for it in Teams or Copilot
+          </a>
+          <a class="btn btn-primary" href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=hero_get_started"
+             data-track="qbr_install_cta_click" data-cta-location="hero_get_started">
+            Get Started
+          </a>
+          <a class="btn btn-secondary" href="https://www.intellithing.com/m365/it-admin-merchant-qbr-autopilot.html?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=hero_admin_guide"
+             data-track="qbr_admin_guide_click" data-cta-location="hero_admin_guide">
+            IT Admin Guide
+          </a>
+        </div>
+        <div class="install-strip">
+          <div>
+            <strong>Installed from Microsoft — not from this site</strong>
+            <p>
+              Merchant QBR AutoPilot is distributed through the Microsoft Teams store,
+              Microsoft Marketplace (AppSource), and the Microsoft 365 Copilot agent catalog.
+              Search for the app by name to find it:
+            </p>
+          </div>
+          <div class="copy-row">
+            <span class="app-name-chip" id="qbr-app-name">Merchant QBR AutoPilot</span>
+            <button type="button" class="btn-copy" id="qbr-copy-app-name" data-cta-location="hero_install_strip">Copy name</button>
+          </div>
         </div>
       </section>
 
@@ -317,7 +387,7 @@
         </article>
       </section>
 
-      <section class="grid" aria-label="Installation" style="margin-top: 20px;">
+      <section class="grid" id="install" aria-label="Installation" style="margin-top: 20px;">
         <article class="card span-12">
           <div class="two-col">
             <div>
@@ -329,12 +399,27 @@
               </p>
               <p>Here's the fastest path:</p>
               <ol>
-                <li>Find the app on the Microsoft Teams store or Marketplace and click <strong>Request approval</strong>.</li>
+                <li>
+                  In Microsoft Teams or Microsoft 365 Copilot, open the app/agent store and search for
+                  <strong>Merchant QBR AutoPilot</strong>, then click <strong>Request approval</strong>.
+                </li>
                 <li>Forward the IT admin guide to your IT team.</li>
                 <li>Your admin approves it at M365 Admin Center → Agents → All agents → Requests.</li>
               </ol>
+              <div class="copy-row" style="margin: 6px 0 14px;">
+                <span class="app-name-chip">Merchant QBR AutoPilot</span>
+                <button type="button" class="btn-copy" id="qbr-copy-app-name-install" data-cta-location="install_section">Copy name</button>
+              </div>
               <div class="cta-row">
-                <a class="btn btn-secondary" href="https://www.intellithing.com/m365/it-admin-merchant-qbr-autopilot.html">IT Admin Approval Guide</a>
+                <a class="btn btn-secondary" href="https://www.intellithing.com/m365/it-admin-merchant-qbr-autopilot.html?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=install_section_admin_guide"
+                   data-track="qbr_admin_guide_click" data-cta-location="install_section">
+                  IT Admin Approval Guide
+                </a>
+                <a class="btn btn-secondary"
+                   href="mailto:?subject=Please%20approve%20Merchant%20QBR%20AutoPilot%20for%20our%20Microsoft%20365%20tenant&body=Hi%2C%0A%0ACould%20you%20approve%20the%20Microsoft%20365%20Copilot%20agent%20%22Merchant%20QBR%20AutoPilot%22%20for%20our%20tenant%3F%20It%20appears%20under%20M365%20Admin%20Center%20%E2%86%92%20Agents%20%E2%86%92%20All%20agents%20%E2%86%92%20Requests.%0A%0AApproval%20guide%20for%20admins%3A%0Ahttps%3A%2F%2Fwww.intellithing.com%2Fm365%2Fit-admin-merchant-qbr-autopilot.html%3Futm_source%3Dit_admin_email%26utm_medium%3Dreferral%26utm_campaign%3Dmerchant_qbr_autopilot%0A%0AThanks!"
+                   data-track="qbr_admin_guide_click" data-cta-location="install_section_send_to_admin">
+                  Send this to your IT admin
+                </a>
               </div>
             </div>
             <div class="card" style="background:#f8fbff;">
@@ -389,22 +474,64 @@
           <p class="kicker">Get Started</p>
           <h2>Start generating scorecards inside Copilot today</h2>
           <p>
-            Find Merchant QBR AutoPilot in the Microsoft Teams store or Marketplace, request approval,
+            Search for <strong>Merchant QBR AutoPilot</strong> in the Microsoft Teams store,
+            Microsoft Marketplace, or the Copilot agent catalog, request approval,
             and you're up and running in minutes.
           </p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html">Get Started</a>
-            <a class="btn btn-secondary" href="https://www.intellithing.com/#contact">Contact IntelliThing</a>
+            <a class="btn btn-primary" href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=footer_get_started"
+               data-track="qbr_install_cta_click" data-cta-location="footer_get_started">
+              Get Started
+            </a>
+            <a class="btn btn-secondary" href="https://www.intellithing.com/?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=footer_contact#contact"
+               data-track="qbr_contact_click" data-cta-location="footer_contact">
+              Contact IntelliThing
+            </a>
           </div>
           <p class="footer">
-            Support: <a href="mailto:support@intellithing.com">support@intellithing.com</a>
+            Support: <a href="mailto:support@intellithing.com" data-track="qbr_contact_click" data-cta-location="footer_support_email">support@intellithing.com</a>
             &nbsp;·&nbsp;
-            <a href="https://www.intellithing.com/m365/privacy-merchant-qbr-autopilot.html">Privacy Policy</a>
+            <a href="https://www.intellithing.com/m365/support-merchant-qbr-autopilot.html?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=footer_support"
+               data-track="qbr_contact_click" data-cta-location="footer_support_page">Support</a>
             &nbsp;·&nbsp;
-            <a href="https://www.intellithing.com/m365/terms-merchant-qbr-autopilot.html">Terms of Use</a>
+            <a href="https://www.intellithing.com/m365/privacy-merchant-qbr-autopilot.html?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=footer_privacy">Privacy Policy</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.intellithing.com/m365/terms-merchant-qbr-autopilot.html?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=footer_terms">Terms of Use</a>
           </p>
         </article>
       </section>
     </main>
+    <script>
+      (function () {
+        var APP_NAME = 'Merchant QBR AutoPilot';
+        ['qbr-copy-app-name', 'qbr-copy-app-name-install'].forEach(function (id) {
+          var btn = document.getElementById(id);
+          if (!btn) return;
+          btn.addEventListener('click', function () {
+            function done() {
+              var original = btn.textContent;
+              btn.textContent = 'Copied ✓';
+              setTimeout(function () { btn.textContent = original; }, 2000);
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(APP_NAME).then(done, done);
+            } else {
+              var ta = document.createElement('textarea');
+              ta.value = APP_NAME;
+              document.body.appendChild(ta);
+              ta.select();
+              try { document.execCommand('copy'); } catch (e) {}
+              document.body.removeChild(ta);
+              done();
+            }
+            if (window.trackEvent) {
+              window.trackEvent('qbr_copy_app_name', {
+                cta_location: btn.getAttribute('data-cta-location') || ''
+              });
+            }
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
