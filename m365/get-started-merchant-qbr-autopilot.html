@@ -23,15 +23,66 @@
         padding: 2px 6px;
         border-radius: 4px;
       }
+      .callout {
+        background: #f0f9ff;
+        border-left: 4px solid #0284c7;
+        padding: 14px 18px;
+        margin: 20px 0;
+        border-radius: 0 6px 6px 0;
+      }
+      .app-name-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 10px 0;
+      }
+      .app-name {
+        background: #eef2ff;
+        border: 1px solid #c7d2fe;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 14px;
+      }
+      button {
+        border: 1px solid #d1d5db;
+        background: #fff;
+        border-radius: 8px;
+        padding: 8px 12px;
+        color: #1d4ed8;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #eff6ff;
+      }
     </style>
   </head>
   <body>
     <h1>Getting Started with Merchant QBR AutoPilot</h1>
 
-    <h2>1. Open the Agent</h2>
-    <p>Launch Merchant QBR AutoPilot in Microsoft 365 Copilot and sign in with your work account.</p>
+    <div class="callout">
+      <strong>Find the app in Microsoft 365:</strong>
+      Search for <strong>Merchant QBR AutoPilot</strong> in Microsoft Teams Apps,
+      Microsoft Marketplace, or the Microsoft 365 Copilot agent catalog. If your
+      tenant requires approval, click <strong>Request approval</strong> and send the
+      IT admin guide to your Microsoft 365 administrator.
+      <div class="app-name-row">
+        <span class="app-name" id="qbr-app-name">Merchant QBR AutoPilot</span>
+        <button type="button" id="qbr-copy-app-name" data-cta-location="get_started_top">Copy app name</button>
+      </div>
+    </div>
 
-    <h2>2. Review Input Schema</h2>
+    <h2>1. Find and Open the Agent</h2>
+    <p>
+      In Microsoft Teams or Microsoft 365 Copilot, search for
+      <strong>Merchant QBR AutoPilot</strong>. Add the app if it is available, or
+      click <strong>Request approval</strong> if your organization requires IT admin approval.
+    </p>
+
+    <h2>2. Review the Input Schema</h2>
     <p>Ask for sample data schema first to confirm required CSV fields and data shape.</p>
 
     <h2>3. Choose a Merchant</h2>
@@ -55,6 +106,38 @@
       <li><a href="https://www.intellithing.com/m365/merchant-qbr-autopilot.html?utm_source=qbr_get_started&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=related_product_page">Merchant QBR AutoPilot product page</a></li>
       <li><a href="https://www.intellithing.com/m365/it-admin-merchant-qbr-autopilot.html?utm_source=qbr_get_started&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=related_admin_guide"
              data-track="qbr_admin_guide_click" data-cta-location="get_started_related_links">IT admin approval guide</a></li>
+      <li><a href="https://marketplace.microsoft.com/en-us/search/products?search=merchant%20qbr&page=1&utm_source=qbr_get_started&utm_medium=external_link&utm_campaign=merchant_qbr_autopilot&utm_content=marketplace_search"
+             data-track="qbr_appsource_click" data-cta-location="get_started_marketplace_search">Search Microsoft Marketplace for Merchant QBR</a></li>
     </ul>
+    <script>
+      (function () {
+        var APP_NAME = 'Merchant QBR AutoPilot';
+        var btn = document.getElementById('qbr-copy-app-name');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          function done() {
+            var original = btn.textContent;
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = original; }, 2000);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(APP_NAME).then(done, done);
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = APP_NAME;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            done();
+          }
+          if (window.trackEvent) {
+            window.trackEvent('qbr_copy_app_name', {
+              cta_location: btn.getAttribute('data-cta-location') || ''
+            });
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
