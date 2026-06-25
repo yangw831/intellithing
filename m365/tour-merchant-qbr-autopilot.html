@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How It Works — Merchant QBR AutoPilot</title>
+  <link rel="canonical" href="https://www.intellithing.com/m365/tour-merchant-qbr-autopilot.html" />
+  <script src="qbr-tracking.js" defer></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0D1825;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+      padding: 40px 24px 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* ── Header ── */
+    .header { text-align: center; max-width: 600px; margin-bottom: 12px; }
+    .logo { display: inline-flex; align-items: center; gap: 11px; margin-bottom: 14px; text-decoration: none; }
+    .logo-icon {
+      width: 38px; height: 38px;
+      border-radius: 7px;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+    .logo span { color: #fff; font-size: 15px; font-weight: 700; }
+    .header h1 { color: #fff; font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
+    .header h1 em { color: #0078D4; font-style: normal; }
+    .philosophy {
+      color: #7A9CB8; font-size: 13px; line-height: 1.7; max-width: 540px; margin: 0 auto;
+    }
+    .philosophy strong { color: #A8C4DC; }
+
+    /* ── Journey container ── */
+    .journey { width: 100%; max-width: 600px; margin-top: 32px; }
+
+    /* ── Phase header ── */
+    .phase-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .phase-pill {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 20px; flex-shrink: 0;
+    }
+    .pill-prep     { background: #0C2A4A; color: #60AFFF; }
+    .pill-followup { background: #1A2E10; color: #7FD45A; }
+    .phase-line { flex: 1; height: 1px; opacity: 0.2; }
+    .line-blue  { background: #60AFFF; }
+    .line-green { background: #7FD45A; }
+    .phase-sub { font-size: 10px; color: #4A6680; font-style: italic; white-space: nowrap; }
+
+    /* ── Step cards ── */
+    .step-wrap { display: flex; flex-direction: column; align-items: center; }
+    .step-card {
+      width: 100%; background: #162338;
+      border: 1px solid #1E3A5F; border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .step-card.followup { background: #121E0F; border-color: #2A4A1A; }
+
+    .step-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+    .step-num {
+      font-size: 9.5px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 3px 10px;
+      border-radius: 20px; white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+    }
+    .num-blue  { background: #0078D4; color: #fff; }
+    .num-green { background: #2D6A1A; color: #7FD45A; }
+    .step-title { color: #fff; font-size: 15px; font-weight: 700; line-height: 1.3; }
+
+    .step-desc { color: #8BA7C7; font-size: 12px; line-height: 1.6; margin-bottom: 12px; }
+    .step-card.followup .step-desc { color: #7A9C6A; }
+
+    /* Prompt */
+    .prompt-pill {
+      background: #0D1825; border-left: 2px solid #0078D4;
+      border-radius: 0 6px 6px 0; padding: 8px 14px;
+      font-size: 12px; color: #8BA7C7; font-style: italic; margin-top: 4px;
+    }
+
+    /* KPIs */
+    .kpi-row { display: flex; gap: 10px; margin-bottom: 12px; }
+    .kpi { flex: 1; background: #0D1825; border-radius: 7px; padding: 10px; text-align: center; }
+    .kpi .val { font-size: 22px; font-weight: 700; color: #E8C547; }
+    .kpi .lbl { font-size: 10px; color: #8BA7C7; margin-top: 3px; }
+
+    .dl-btn {
+      display: inline-block; background: #0078D4; color: #fff;
+      font-size: 13px; font-weight: 600; padding: 8px 20px;
+      border-radius: 6px; text-decoration: none; margin-top: 4px;
+    }
+
+    /* Workspace path */
+    .path-box {
+      background: #0D1825; border-radius: 6px; padding: 9px 14px;
+      font-size: 11px; color: #60AFFF; font-family: monospace;
+      line-height: 1.8; margin-bottom: 10px;
+    }
+    .tag {
+      display: inline-block; background: #0D1825;
+      border: 1px solid #1E3A5F; border-radius: 4px;
+      color: #0078D4; font-size: 10.5px; padding: 3px 8px; margin: 3px 3px 0 0;
+    }
+
+    /* Discussion list */
+    .discussion-list { list-style: none; margin-top: 8px; }
+    .discussion-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 12px; color: #8BA7C7;
+      padding: 7px 0; border-bottom: 1px solid #1A2E45;
+    }
+    .discussion-list li:last-child { border-bottom: none; }
+    .discussion-list li .bullet { color: #0078D4; font-size: 16px; line-height: 1; flex-shrink: 0; margin-top: -1px; }
+    .discussion-list li strong { color: #A8C4DC; }
+
+    /* Checklist */
+    .checklist { list-style: none; margin-top: 8px; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 12px; padding: 7px 0;
+      border-bottom: 1px solid #1A2E18;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check { color: #7FD45A; font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+    .check-text { color: #9AB88A; line-height: 1.5; }
+    .check-text strong { color: #C4DCBA; }
+
+    /* ── Connectors ── */
+    .connector { display: flex; flex-direction: column; align-items: center; padding: 4px 0; }
+    .conn-line { width: 2px; height: 24px; }
+    .cl-blue   { background: #1E3A5F; }
+    .cl-purple { background: #4A2D7A; }
+    .cl-green  { background: #2A4A1A; }
+
+    /* ── Meeting node ── */
+    .meeting-node {
+      width: 100%;
+      border: 2px dashed #7B5EA7;
+      border-radius: 12px;
+      background: rgba(100, 60, 160, 0.10);
+      padding: 20px 22px;
+      display: flex; align-items: center; gap: 18px;
+      margin: 4px 0;
+    }
+    .meeting-icon-wrap {
+      width: 56px; height: 56px; flex-shrink: 0;
+      background: rgba(123, 94, 167, 0.2);
+      border-radius: 50%; border: 1.5px solid #7B5EA7;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+    }
+    .meeting-text h3 { color: #C8A8FF; font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+    .meeting-text p  { color: #7B5EA7; font-size: 12px; line-height: 1.6; }
+    .ai-badge {
+      margin-left: auto; flex-shrink: 0;
+      background: rgba(123, 94, 167, 0.12); border: 1px solid #4A2D7A;
+      border-radius: 8px; padding: 8px 14px; text-align: center;
+    }
+    .ai-badge .row { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.8; }
+    .ai-badge .r-prep   { color: #60AFFF; }
+    .ai-badge .r-arrow  { color: #7B5EA7; font-size: 14px; }
+    .ai-badge .r-human  { color: #C8A8FF; }
+    .ai-badge .r-follow { color: #7FD45A; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center; margin-top: 36px;
+      color: #4A6680; font-size: 11px; line-height: 1.8;
+    }
+    .footer a { color: #0078D4; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <a class="logo" href="https://www.intellithing.com">
+      <img class="logo-icon" src="../images/merchant-qbr-autopilot-icon.png" alt="Merchant QBR AutoPilot icon" />
+      <span>Merchant QBR AutoPilot</span>
+    </a>
+    <h1>From a single prompt to a <em>closed-loop QBR</em></h1>
+    <p class="philosophy">
+      <strong>Merchant QBR AutoPilot</strong> keeps your QBR moving — from preparation through customer conversation to follow-up — without losing context between steps.
+    </p>
+  </div>
+
+  <div class="journey">
+
+    <!-- ══ PREP PHASE ══ -->
+    <div class="phase-header">
+      <div class="phase-pill pill-prep">⚙ Prep</div>
+      <div class="phase-line line-blue"></div>
+      <div class="phase-sub">AI-assisted · Steps 1–4</div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step-wrap">
+      <div class="step-card">
+        <div class="step-top">
+          <span class="step-num num-blue">Step 1</span>
+          <div class="step-title">💬 Ask for a QBR deck</div>
+        </div>
+        <p class="step-desc">One prompt is all it takes. Merchant QBR AutoPilot picks up the Apex Retail portfolio sample and starts immediately — no configuration needed.</p>
+        <div class="prompt-pill">"Generate an executive QBR deck from sample data"</div>
+      </div>
+      <div class="connector">
+        <div class="conn-line cl-blue"></div>
+        <svg width="12" height="8" viewBox="0 0 12 8"><path d="M0 0 L6 7 L12 0" stroke="#1E3A5F" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-wrap">
+      <div class="step-card">
+        <div class="step-top">
+          <span class="step-num num-blue">Step 2</span>
+          <div class="step-title">📊 Deck delivered ✅</div>
+        </div>
+        <p class="step-desc">A multi-page executive PowerPoint covering regional performance, authorization funnel, cost analysis, dispute risk, and Q3 strategic actions.</p>
+        <div class="kpi-row">
+          <div class="kpi"><div class="val">$8.84M</div><div class="lbl">Total GMV</div></div>
+          <div class="kpi"><div class="val">91.3%</div><div class="lbl">Auth Success</div></div>
+          <div class="kpi"><div class="val">2.14%</div><div class="lbl">Cost of Accept.</div></div>
+        </div>
+        <a class="dl-btn" href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html">⬇ Try it — get the sample deck</a>
+      </div>
+      <div class="connector">
+        <div class="conn-line cl-blue"></div>
+        <svg width="12" height="8" viewBox="0 0 12 8"><path d="M0 0 L6 7 L12 0" stroke="#1E3A5F" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-wrap">
+      <div class="step-card">
+        <div class="step-top">
+          <span class="step-num num-blue">Step 3</span>
+          <div class="step-title">🗂️ Save to workspace</div>
+        </div>
+        <p class="step-desc">The deck, source workbook, and QBR summary are saved together in a dedicated OneDrive folder — organized and ready to share or revisit anytime.</p>
+        <div class="path-box">Merchant QBR AutoPilot / QBR Workspaces / Apex Retail Global / 2026-Q2</div>
+        <div>
+          <span class="tag">📊 PowerPoint</span>
+          <span class="tag">📗 Excel workbook</span>
+          <span class="tag">📝 QBR summary</span>
+        </div>
+      </div>
+      <div class="connector">
+        <div class="conn-line cl-blue"></div>
+        <svg width="12" height="8" viewBox="0 0 12 8"><path d="M0 0 L6 7 L12 0" stroke="#1E3A5F" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-wrap">
+      <div class="step-card">
+        <div class="step-top">
+          <span class="step-num num-blue">Step 4</span>
+          <div class="step-title">📉 Spot changes</div>
+        </div>
+        <p class="step-desc">Surface material period-over-period performance shifts and build your narrative before walking into the room.</p>
+        <ul class="discussion-list">
+          <li>
+            <span class="bullet">›</span>
+            <span><strong>Authorization rate dropped in APAC Local Cards (−140 bps)</strong> — discuss local acquiring strategy</span>
+          </li>
+          <li>
+            <span class="bullet">›</span>
+            <span><strong>EMEA / APM is the weakest corridor (−160 bps)</strong> — potential network token rollout opportunity</span>
+          </li>
+          <li>
+            <span class="bullet">›</span>
+            <span><strong>APAC volume grew +23.6%</strong> despite auth decline — growth at risk without intervention</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Transition to meeting -->
+      <div class="connector">
+        <div class="conn-line cl-purple"></div>
+        <svg width="12" height="8" viewBox="0 0 12 8"><path d="M0 0 L6 7 L12 0" stroke="#4A2D7A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- ══ CUSTOMER MEETING ══ -->
+    <div class="meeting-node">
+      <div class="meeting-icon-wrap">🤝</div>
+      <div class="meeting-text">
+        <h3>Customer meeting</h3>
+        <p>You walk in prepared. The deck, the data, and the narrative are ready.<br/>This is the human conversation — between you and your merchant.</p>
+      </div>
+      <div class="ai-badge">
+        <div class="row r-prep">AI prep</div>
+        <div class="row r-arrow">↓</div>
+        <div class="row r-human">You + merchant</div>
+        <div class="row r-arrow">↓</div>
+        <div class="row r-follow">AI follow-up</div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <div class="conn-line cl-green"></div>
+      <svg width="12" height="8" viewBox="0 0 12 8"><path d="M0 0 L6 7 L12 0" stroke="#2A4A1A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- ══ FOLLOW-UP PHASE ══ -->
+    <div class="phase-header">
+      <div class="phase-pill pill-followup">✔ Follow up</div>
+      <div class="phase-line line-green"></div>
+      <div class="phase-sub" style="color:#3A6A2A;">AI-assisted · Step 5</div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-wrap">
+      <div class="step-card followup">
+        <div class="step-top">
+          <span class="step-num num-green">Step 5</span>
+          <div class="step-title" style="color:#C4DCBA;">📋 Capture outcome</div>
+        </div>
+        <p class="step-desc">After the meeting — log what was agreed so nothing falls through the cracks.</p>
+        <ul class="checklist">
+          <li>
+            <span class="check">✓</span>
+            <span class="check-text"><strong>Decisions captured</strong> — LATAM/APAC auth leakage prioritized; NAMER/EMEA growth plan preserved</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span class="check-text"><strong>Owners assigned</strong> — Maya: corridor-level recovery plan by July 9 · Theo: dispute review by July 16</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span class="check-text"><strong>Follow-up drafted</strong> — summary email ready to send to Apex Retail stakeholders</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span class="check-text"><strong>Next review scheduled</strong> — October 8, 2026</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /journey -->
+
+  <div class="footer">
+    Merchant QBR AutoPilot by <a href="https://www.intellithing.com">IntelliThing</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html">Get started</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.intellithing.com/m365/support-merchant-qbr-autopilot.html">Support</a>
+  </div>
+
+</body>
+</html>
