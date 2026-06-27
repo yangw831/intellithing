@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IntelliThing Insights</title>
+    <link>https://www.intellithing.com/blog/</link>
+    <description>Practical analysis of AI, merchant portfolio management, agentic commerce, fintech, and Microsoft 365 Copilot agents.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 Jun 2026 21:00:00 GMT</lastBuildDate>
+    <atom:link href="https://www.intellithing.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>What AI-Driven Commerce Changes for Card Issuers and Payment Providers</title>
+      <link>https://www.intellithing.com/blog/ai-driven-commerce-card-issuers-payment-providers.html</link>
+      <guid isPermaLink="true">https://www.intellithing.com/blog/ai-driven-commerce-card-issuers-payment-providers.html</guid>
+      <pubDate>Sat, 27 Jun 2026 20:00:00 GMT</pubDate>
+      <description>Agentic commerce changes how issuers and payment providers verify identity, intent, authorization, fraud, disputes, loyalty, and settlement.</description>
+    </item>
+
+    <item>
+      <title>USDT and USDC: Two Different Kinds of Market Fitness</title>
+      <link>https://www.intellithing.com/blog/usdt-usdc-market-fitness.html</link>
+      <guid isPermaLink="true">https://www.intellithing.com/blog/usdt-usdc-market-fitness.html</guid>
+      <pubDate>Sat, 27 Jun 2026 19:00:00 GMT</pubDate>
+      <description>USDT leads through distribution while USDC leads through institutional and technical integration. The useful question is which one fits the job.</description>
+    </item>
+
+    <item>
+      <title>Why Merchant Account Managers Lose Days to QBR Preparation</title>
+      <link>https://www.intellithing.com/blog/merchant-account-managers-qbr-preparation.html</link>
+      <guid isPermaLink="true">https://www.intellithing.com/blog/merchant-account-managers-qbr-preparation.html</guid>
+      <pubDate>Sat, 27 Jun 2026 18:00:00 GMT</pubDate>
+      <description>The operational work between merchant performance data and an executive-ready quarterly business review—and where careful AI automation can help.</description>
+    </item>
+  </channel>
+</rss>

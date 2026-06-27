@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discuss an AI Project | IntelliThing</title>
+    <meta
+      name="description"
+      content="Contact IntelliThing about AI strategy, agentic commerce, fintech, merchant portfolio management, or Microsoft 365 Copilot agents."
+    />
+    <link rel="canonical" href="https://www.intellithing.com/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Discuss an AI Project | IntelliThing" />
+    <meta
+      property="og:description"
+      content="Talk with IntelliThing about practical AI strategy and product implementation for commerce and financial services."
+    />
+    <meta property="og:url" content="https://www.intellithing.com/contact.html" />
+    <meta
+      property="og:image"
+      content="https://www.intellithing.com/images/intellithing-insights-social.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="images/logo.png" />
+    <link rel="stylesheet" href="blog/blog.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "url": "https://www.intellithing.com/contact.html",
+        "name": "Discuss an AI Project",
+        "description": "Contact IntelliThing about AI strategy and implementation for commerce and financial services.",
+        "mainEntity": {
+          "@type": "Organization",
+          "@id": "https://www.intellithing.com/#organization",
+          "name": "IntelliThing",
+          "url": "https://www.intellithing.com/",
+          "email": "info@intellithing.com"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="IntelliThing home">
+          <img src="images/logo.png" alt="IntelliThing" />
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="blog/">Insights</a>
+          <a class="nav-cta" href="contact.html" aria-current="page">Discuss a project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell contact-page">
+      <div class="eyebrow">Contact IntelliThing</div>
+      <h1>Let’s talk about what you’re building.</h1>
+      <p class="contact-intro">
+        Share the business problem, product idea, or AI workflow you’re exploring.
+        A concise note is plenty—we can start there.
+      </p>
+
+      <div class="contact-grid">
+        <section class="contact-card" aria-labelledby="email-heading">
+          <h2 id="email-heading">Email us directly</h2>
+          <p>
+            The address remains visible even when your browser does not have a
+            default email application configured.
+          </p>
+          <a
+            class="contact-email"
+            href="mailto:info@intellithing.com?subject=AI%20consulting%20inquiry%20from%20IntelliThing"
+          >
+            info@intellithing.com
+          </a>
+          <div class="contact-actions">
+            <a
+              class="contact-button primary"
+              href="mailto:info@intellithing.com?subject=AI%20consulting%20inquiry%20from%20IntelliThing"
+            >
+              Open email app
+            </a>
+            <button class="contact-button" id="copy-email" type="button">
+              Copy email address
+            </button>
+          </div>
+          <p class="contact-note" id="copy-status" aria-live="polite">
+            If “Open email app” does nothing, use “Copy email address” instead.
+          </p>
+        </section>
+
+        <aside class="contact-card">
+          <h2>Good topics to bring</h2>
+          <ul class="contact-topics">
+            <li>AI product and implementation strategy</li>
+            <li>Agentic commerce and programmable payments</li>
+            <li>Merchant portfolio and loyalty workflows</li>
+            <li>Microsoft 365 Copilot agents</li>
+            <li>Applied generative AI systems</li>
+          </ul>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-shell footer-inner">
+        <span>© 2018–2026 IntelliThing Inc.</span>
+        <span>Artificial intelligence consulting · San Francisco Bay Area</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var button = document.getElementById("copy-email");
+        var status = document.getElementById("copy-status");
+        var email = "info@intellithing.com";
+
+        function showCopied() {
+          button.textContent = "Copied";
+          status.textContent = email + " has been copied to your clipboard.";
+        }
+
+        function legacyCopy() {
+          var field = document.createElement("textarea");
+          field.value = email;
+          field.setAttribute("readonly", "");
+          field.style.position = "fixed";
+          field.style.opacity = "0";
+          document.body.appendChild(field);
+          field.select();
+          field.setSelectionRange(0, field.value.length);
+
+          var copied = false;
+          try {
+            copied = document.execCommand("copy");
+          } catch (error) {
+            copied = false;
+          }
+          document.body.removeChild(field);
+
+          if (copied) {
+            showCopied();
+          } else {
+            var emailLink = document.querySelector(".contact-email");
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(emailLink);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            button.textContent = "Email selected";
+            status.textContent = "Press Command+C (Mac) or Ctrl+C (Windows) to copy.";
+          }
+        }
+
+        button.addEventListener("click", function () {
+          if (!navigator.clipboard || !navigator.clipboard.writeText) {
+            legacyCopy();
+            return;
+          }
+
+          navigator.clipboard.writeText(email).then(
+            showCopied,
+            legacyCopy
+          );
+        });
+      })();
+    </script>
+  </body>
+</html>

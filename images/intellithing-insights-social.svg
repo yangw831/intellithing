@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef5ff"/>
+      <stop offset="0.58" stop-color="#f7f9fc"/>
+      <stop offset="1" stop-color="#dce9ff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#1d4ed8" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#1d4ed8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <circle cx="1010" cy="105" r="310" fill="url(#glow)"/>
+  <circle cx="1105" cy="555" r="220" fill="url(#glow)"/>
+
+  <g fill="none" stroke="#1d4ed8" stroke-opacity="0.28" stroke-width="3">
+    <path d="M930 105 L1035 70 L1115 150 L1070 270 L935 255 L875 165 Z"/>
+    <path d="M935 255 L1025 345 L1130 325 L1070 270"/>
+    <path d="M1025 345 L960 455 L1065 535 L1150 450 L1130 325"/>
+    <path d="M875 165 L790 270 L850 390 L960 455"/>
+  </g>
+  <g fill="#1d4ed8">
+    <circle cx="930" cy="105" r="10"/>
+    <circle cx="1035" cy="70" r="8"/>
+    <circle cx="1115" cy="150" r="12"/>
+    <circle cx="1070" cy="270" r="9"/>
+    <circle cx="935" cy="255" r="13"/>
+    <circle cx="875" cy="165" r="7"/>
+    <circle cx="1025" cy="345" r="12"/>
+    <circle cx="1130" cy="325" r="7"/>
+    <circle cx="960" cy="455" r="9"/>
+    <circle cx="1065" cy="535" r="13"/>
+    <circle cx="1150" cy="450" r="8"/>
+    <circle cx="790" cy="270" r="11"/>
+    <circle cx="850" cy="390" r="7"/>
+  </g>
+
+  <g transform="translate(82 74)" fill="none" stroke="#1261b5" stroke-width="5">
+    <circle cx="26" cy="26" r="7" fill="#1261b5" stroke="none"/>
+    <path d="M26 0 V52 M0 26 H52 M8 8 L44 44 M44 8 L8 44"/>
+    <circle cx="26" cy="0" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="26" cy="52" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="0" cy="26" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="52" cy="26" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="8" cy="8" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="44" cy="44" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="44" cy="8" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="8" cy="44" r="4" fill="#1261b5" stroke="none"/>
+  </g>
+
+  <text x="155" y="113" fill="#1e3a5f" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="34" font-weight="750" letter-spacing="4">
+    INTELLITHING
+  </text>
+  <text x="82" y="260" fill="#1d4ed8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="24" font-weight="750" letter-spacing="3">
+    INSIGHTS
+  </text>
+  <text x="82" y="350" fill="#162033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="66" font-weight="760">
+    AI ideas grounded in how
+  </text>
+  <text x="82" y="425" fill="#162033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="66" font-weight="760">
+    businesses actually operate.
+  </text>
+  <text x="82" y="505" fill="#5d6b82" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="28">
+    AI commerce · fintech · merchant portfolio management
+  </text>
+</svg>
