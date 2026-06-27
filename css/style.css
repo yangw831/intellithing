@@ -57,12 +57,34 @@ a:hover, a:focus {
 	padding: 8px 0;
 	width: 100%;
 }
+.header-actions {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+	padding-top: 4px;
+}
+.header-insights {
+	border: 1px solid #c8d7e8;
+	border-radius: 0;
+	color: #045fcb;
+	font-weight: 600;
+	padding: 14px 20px;
+}
+.header-insights:hover,
+.header-insights:focus {
+	background: #eef5ff;
+	color: #045fcb;
+	text-decoration: none;
+}
 .btn.contact {
 	background: #006CEB none repeat scroll 0 0;
 	border: medium none;
 	border-radius: 0;
 	padding: 16px 25px;
 	margin-top: 4px;
+}
+.header-actions .btn.contact {
+	margin-top: 0;
 }
 .btn.contact:hover {
 	background: #045fcb none repeat scroll 0 0;
@@ -446,6 +468,97 @@ input[type="checkbox"] .styled:checked + label::after, input[type="radio"] .styl
 	font-family: Raleway;
 	font-weight: 400;
 	margin: 0 0 70px;
+}
+
+#latest-insights {
+	background: #f5f8fc;
+	padding: 70px 0 76px;
+}
+#latest-insights .insights-heading {
+	align-items: end;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 28px;
+}
+#latest-insights .insights-heading h1 {
+	font-family: Raleway;
+	font-weight: 400;
+	margin: 0;
+}
+#latest-insights .insights-heading > a {
+	font-weight: 600;
+}
+.insights-grid {
+	display: grid;
+	gap: 22px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.insight-card {
+	background: #fff;
+	border: 1px solid #dbe2ec;
+	border-radius: 14px;
+	box-shadow: 0 12px 34px rgba(22, 32, 51, 0.055);
+	display: flex;
+	flex-direction: column;
+	min-height: 300px;
+	padding: 28px;
+}
+.insight-card .insight-category {
+	color: #045fcb;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	margin-bottom: 12px;
+	text-transform: uppercase;
+}
+.insight-card h2 {
+	font-family: Raleway;
+	font-size: 25px;
+	font-weight: 500;
+	line-height: 1.25;
+	margin: 0 0 14px;
+}
+.insight-card h2 a {
+	color: #172033;
+}
+.insight-card h2 a:hover,
+.insight-card h2 a:focus {
+	color: #045fcb;
+}
+.insight-card p {
+	color: #5d6b82;
+	line-height: 1.55;
+}
+.insight-card .insight-read {
+	font-weight: 600;
+	margin-top: auto;
+	padding-top: 18px;
+}
+
+@media only screen and (max-width : 767px) {
+	.header-actions {
+		gap: 8px;
+	}
+	.header-insights {
+		padding: 10px 12px;
+	}
+	.header-actions .btn.contact {
+		padding: 12px 14px;
+	}
+	#latest-insights {
+		padding: 52px 0 58px;
+	}
+	#latest-insights .insights-heading {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 12px;
+	}
+	.insights-grid {
+		grid-template-columns: 1fr;
+	}
+	.insight-card {
+		min-height: 0;
+	}
 }
 
 /*==========  Mobile First Method  ==========*/
