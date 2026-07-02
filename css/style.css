@@ -529,6 +529,11 @@ input[type="checkbox"] .styled:checked + label::after, input[type="radio"] .styl
 	color: #5d6b82;
 	line-height: 1.55;
 }
+.insight-card .insight-meta {
+	color: #5d6b82;
+	font-size: 13px;
+	margin-top: 10px;
+}
 .insight-card .insight-read {
 	font-weight: 600;
 	margin-top: auto;

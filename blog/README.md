@@ -23,10 +23,13 @@ in `sitemap.xml`; only the reusable template remains marked `noindex`.
 7. Include concise visible FAQs that match the structured data exactly.
 8. Include the author card and update credentials when the subject requires it.
 9. Use a specific URL such as `merchant-account-manager-qbr-challenges.html`.
-10. Remove `noindex` only after editorial review.
-11. Add the published article to `index.html`, `sitemap.xml`, and the RSS feed.
-12. Add contextual links to and from the relevant product page.
-13. Verify desktop and mobile layout, metadata, links, and schema.
+10. Fill in the share buttons: URL-encode the canonical URL and headline in the
+    LinkedIn/X links (both the byline row and the end-of-article block), and
+    write an article-specific one-line share nudge.
+11. Remove `noindex` only after editorial review.
+12. Add the published article to `index.html`, `sitemap.xml`, and the RSS feed.
+13. Add contextual links to and from the relevant product page.
+14. Verify desktop and mobile layout, metadata, links, and schema.
 
 ## Initial account-manager pain inventory
 
