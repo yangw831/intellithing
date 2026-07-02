@@ -5,8 +5,16 @@
     <link>https://www.intellithing.com/blog/</link>
     <description>Practical analysis of AI, merchant portfolio management, agentic commerce, fintech, and Microsoft 365 Copilot agents.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Jun 2026 21:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 17:00:00 GMT</lastBuildDate>
     <atom:link href="https://www.intellithing.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>Mean vs. Variance: The Hidden Math That Wins World Cups and Ruins #1 Seeds</title>
+      <link>https://www.intellithing.com/blog/mean-vs-variance-tournament-upsets.html</link>
+      <guid isPermaLink="true">https://www.intellithing.com/blog/mean-vs-variance-tournament-upsets.html</guid>
+      <pubDate>Wed, 01 Jul 2026 16:00:00 GMT</pubDate>
+      <description>Regular seasons reward the highest average performance. Tournaments reward the biggest spike. How sample size explains playoff upsets and World Cup heroics.</description>
+    </item>
 
     <item>
       <title>What AI-Driven Commerce Changes for Card Issuers and Payment Providers</title>
