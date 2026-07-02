@@ -532,12 +532,12 @@ input[type="checkbox"] .styled:checked + label::after, input[type="radio"] .styl
 .insight-card .insight-meta {
 	color: #5d6b82;
 	font-size: 13px;
-	margin-top: 10px;
+	margin-top: auto;
+	padding-top: 18px;
 }
 .insight-card .insight-read {
 	font-weight: 600;
-	margin-top: auto;
-	padding-top: 18px;
+	padding-top: 12px;
 }
 
 @media only screen and (max-width : 767px) {
