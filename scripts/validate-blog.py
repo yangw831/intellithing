@@ -13,14 +13,18 @@ ROOT = Path(__file__).resolve().parent.parent
 BLOG = ROOT / "blog"
 PUBLIC_PAGES = [
     BLOG / "index.html",
+    BLOG / "world-cup-2026-moneyball-forecast.html",
+    BLOG / "mean-vs-variance-tournament-upsets.html",
     BLOG / "merchant-account-managers-qbr-preparation.html",
     BLOG / "usdt-usdc-market-fitness.html",
     BLOG / "ai-driven-commerce-card-issuers-payment-providers.html",
     ROOT / "contact.html",
 ]
-ARTICLE_PAGES = PUBLIC_PAGES[1:4]
+ARTICLE_PAGES = PUBLIC_PAGES[1:6]
 PUBLIC_URLS = {
     "https://www.intellithing.com/blog/",
+    "https://www.intellithing.com/blog/world-cup-2026-moneyball-forecast.html",
+    "https://www.intellithing.com/blog/mean-vs-variance-tournament-upsets.html",
     "https://www.intellithing.com/blog/merchant-account-managers-qbr-preparation.html",
     "https://www.intellithing.com/blog/usdt-usdc-market-fitness.html",
     "https://www.intellithing.com/blog/ai-driven-commerce-card-issuers-payment-providers.html",
@@ -184,7 +188,10 @@ def main():
             print(f"ERROR: {error}")
         return 1
 
-    print("Site validation passed: 5 public pages, 3 articles, contact page, sitemap, RSS, schema, FAQs, and links.")
+    print(
+        f"Site validation passed: {len(PUBLIC_PAGES)} public pages, "
+        f"{len(ARTICLE_PAGES)} articles, sitemap, RSS, schema, FAQs, and links."
+    )
     return 0
 
 
