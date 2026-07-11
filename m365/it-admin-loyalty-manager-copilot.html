@@ -79,9 +79,14 @@
     </p>
 
     <h2>Permissions requested and why</h2>
+    <p>
+      Loyalty Manager Copilot AI has a base Copilot agent approval path and an optional report-workspace
+      save path. Report generation and download can be tested without approving file write access. Saving a
+      generated report into Microsoft 365 requires a one-time tenant admin consent step.
+    </p>
     <table>
       <thead>
-        <tr><th>Permission</th><th>Type</th><th>Why it's needed</th></tr>
+        <tr><th>Permission</th><th>Type</th><th>Why it&apos;s needed</th></tr>
       </thead>
       <tbody>
         <tr>
@@ -94,24 +99,55 @@
           <td>Microsoft 365 standard</td>
           <td>Allows the agent to send response cards within Teams conversations</td>
         </tr>
+        <tr>
+          <td><code>access_as_user</code></td>
+          <td>Delegated backend API scope</td>
+          <td>Allows the report workspace action to call the Loyalty Manager Copilot AI backend as the signed-in user</td>
+        </tr>
+        <tr>
+          <td><code>Files.ReadWrite</code></td>
+          <td>Microsoft Graph delegated scope</td>
+          <td>Allows the backend to save a generated PowerPoint report to the signed-in user&apos;s Microsoft 365 report workspace</td>
+        </tr>
+        <tr>
+          <td><code>Files.ReadWrite.AppFolder</code></td>
+          <td>Microsoft Graph delegated scope</td>
+          <td>Supports the app-folder workspace under <code>My files / Apps / Loyalty Manager Copilot AI / Reports</code></td>
+        </tr>
+        <tr>
+          <td><code>offline_access</code></td>
+          <td>Microsoft identity delegated scope</td>
+          <td>Allows Microsoft identity to maintain the consented session for the approved app permissions</td>
+        </tr>
+        <tr>
+          <td><code>Chat.Create</code>, <code>ChatMessage.Send</code>, <code>User.ReadBasic.All</code></td>
+          <td>Microsoft Graph delegated scopes</td>
+          <td>Allow the optional Teams sharing action to resolve an internal recipient, create a one-to-one chat, and send the report card</td>
+        </tr>
       </tbody>
     </table>
     <p>
-      <strong>No Microsoft Graph write permissions are requested.</strong> The agent cannot read email,
-      calendar, files, or contacts. It cannot write to any Microsoft 365 service. There is no custom
-      backend API — all processing occurs within Microsoft 365 Copilot.
+      The app does not request permission to read email, calendar, contacts, or all SharePoint sites. The
+      report-save backend writes only the generated report file selected by the user into the app&apos;s report
+      workspace folder.
     </p>
 
     <h2>Where data lives</h2>
     <ul>
-      <li>All data processing occurs within Microsoft 365 Copilot and your organization's Microsoft tenant.</li>
-      <li><strong>No user data is transmitted to or stored by IntelliThing.</strong> This is a declarative agent with no external backend.</li>
-      <li>Any data uploaded by users (such as CSV files) is processed within the Microsoft 365 Copilot conversation context and governed by your tenant's Microsoft data retention policies.</li>
-      <li>Authentication is handled entirely by Microsoft Entra ID. IntelliThing never sees user credentials or tokens.</li>
+      <li>Sample-data workflows can be tested without connecting customer systems.</li>
+      <li>Generated reports are temporarily stored by the Loyalty Manager Copilot AI Azure service to provide a download link and optional Microsoft 365 save action.</li>
+      <li>If workspace save is approved, reports are saved to the signed-in user&apos;s OneDrive app folder: <code>My files / Apps / Loyalty Manager Copilot AI / Reports</code>.</li>
+      <li>Authentication is handled by Microsoft Entra ID. IntelliThing never sees user passwords.</li>
     </ul>
 
-    <h2>How to approve</h2>
-    <p>When a user clicks <strong>Request approval</strong> on the app listing, the request appears in the M365 Admin Center.</p>
+    <h2>How to approve the app</h2>
+    <p>
+      Admins can approve or deploy Loyalty Manager Copilot AI from the Microsoft 365 admin center.
+      In some Microsoft 365 or Teams app catalog experiences, a blocked end user may also see a
+      Microsoft-provided <strong>Request approval</strong> option; if they use it, the request appears
+      for admins in the admin center. The exact user-facing button and catalog surface can vary by
+      tenant policy and Microsoft 365 client.
+    </p>
     <p><strong>Step 1:</strong> Sign in to <a href="https://admin.cloud.microsoft">admin.cloud.microsoft</a></p>
     <p><strong>Step 2:</strong> Navigate to either:</p>
     <ul>
@@ -126,6 +162,64 @@
     </ul>
     <p><strong>Step 3:</strong> Find <strong>Loyalty Manager Copilot AI</strong> by IntelliThing, Inc. and select <strong>Accept request</strong>.</p>
     <p>Once approved, the app becomes available to the requesting user. You can also deploy it to a broader group from the same screen.</p>
+
+    <h2>How to approve report workspace save</h2>
+    <p>
+      Saving generated reports to Microsoft 365 requires tenant admin consent for the report workspace OAuth
+      application. Open the admin consent URL for the environment you are testing, review the requested
+      permissions, and approve on behalf of the organization.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Environment</th><th>Admin consent URL</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dev</td>
+          <td><a href="https://login.microsoftonline.com/organizations/adminconsent?client_id=e4722ecb-3a54-4f50-b7aa-6b2246b8c1b3">Grant dev report workspace consent</a></td>
+        </tr>
+        <tr>
+          <td>Test</td>
+          <td><a href="https://login.microsoftonline.com/organizations/adminconsent?client_id=66f74fd9-8a73-42e9-9b29-8b965d1287c4">Grant test report workspace consent</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      After approval, verify in Microsoft Entra admin center under
+      <strong>Enterprise applications → Loyalty Manager Copilot AI → Permissions</strong> that the tenant has
+      grants for <code>Files.ReadWrite</code>, <code>Files.ReadWrite.AppFolder</code>,
+      <code>offline_access</code>, and <code>access_as_user</code>.
+    </p>
+    <p>
+      If the Enterprise Application already exists and shows only <code>offline_access</code>, delete the stale
+      Enterprise Application entry or revoke the stale delegated grant, then open the admin consent URL again.
+    </p>
+
+    <h2>How to approve report sharing in Teams</h2>
+    <p>
+      Sharing a saved report in Microsoft Teams uses a separate report sharing OAuth application. This is
+      intentionally separate from workspace save because it needs Teams chat and message permissions.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Environment</th><th>Admin consent URL</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dev</td>
+          <td><a href="https://login.microsoftonline.com/organizations/adminconsent?client_id=1f65078f-9e06-4710-91a2-9f0321f1c9f2">Grant dev report sharing consent</a></td>
+        </tr>
+        <tr>
+          <td>Test</td>
+          <td><a href="https://login.microsoftonline.com/organizations/adminconsent?client_id=d3207249-d40a-4ce8-ac7f-0f0da8b3f9e0">Grant test report sharing consent</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      After approval, verify the report sharing Enterprise Application has grants for
+      <code>Files.ReadWrite</code>, <code>Chat.Create</code>, <code>ChatMessage.Send</code>,
+      <code>User.ReadBasic.All</code>, and <code>access_as_user</code>.
+    </p>
 
     <h2>Questions or concerns</h2>
     <table>
