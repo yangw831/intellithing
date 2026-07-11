@@ -188,7 +188,7 @@
       </ul>
     </div>
 
-    <h2>How to approve report workspace save</h2>
+    <h2 id="approve-report-workspace-save">How to approve report workspace save</h2>
     <p>
       Loyalty Manager Copilot AI lets a user save a generated loyalty performance report as a PowerPoint file
       to their own OneDrive, in an app-specific folder
@@ -200,6 +200,14 @@
     <p>
       <a href="https://login.microsoftonline.com/organizations/adminconsent?client_id=e4722ecb-3a54-4f50-b7aa-6b2246b8c1b3">Grant report workspace consent</a>
     </p>
+    <div class="note">
+      <strong>Seeing an error page after you click Accept?</strong> After consent, your browser is redirected
+      to a Microsoft Teams page that may show a message such as
+      <code>Error: 'Code is null or empty.'</code> This is expected and harmless: the tenant consent is
+      recorded <em>before</em> the redirect, and that landing page simply doesn't handle the admin-consent
+      response. As long as the permission grants verify in the next step, consent succeeded — you can close
+      the error page.
+    </div>
     <p>
       After approval, verify in Microsoft Entra admin center under
       <strong>Enterprise applications → Loyalty Manager Copilot AI → Permissions</strong> that the tenant has
@@ -211,7 +219,7 @@
       Enterprise Application entry or revoke the stale delegated grant, then open the admin consent URL again.
     </p>
 
-    <h2>How to approve report sharing in Teams</h2>
+    <h2 id="approve-report-sharing">How to approve report sharing in Teams</h2>
     <p>
       Loyalty Manager Copilot AI lets a user share a saved report with a colleague as a Microsoft Teams chat
       message, so the recipient gets the report card and file directly in Teams. Because the message is sent on
@@ -224,6 +232,14 @@
     <p>
       <a href="https://login.microsoftonline.com/organizations/adminconsent?client_id=1f65078f-9e06-4710-91a2-9f0321f1c9f2">Grant report sharing consent</a>
     </p>
+    <div class="note">
+      <strong>Seeing an error page after you click Accept?</strong> As with workspace save, your browser is
+      redirected to a Microsoft Teams page that may show a message such as
+      <code>Error: 'Code is null or empty.'</code> This is expected and harmless: the tenant consent is
+      recorded <em>before</em> the redirect, and that landing page simply doesn't handle the admin-consent
+      response. As long as the permission grants verify in the next step, consent succeeded — you can close
+      the error page.
+    </div>
     <p>
       After approval, verify the report sharing Enterprise Application has grants for
       <code>Files.ReadWrite</code>, <code>Chat.Create</code>, <code>ChatMessage.Send</code>,
