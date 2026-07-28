@@ -280,6 +280,18 @@
 </head>
 
 <body>
+<script>
+  // Toggle a shadow/border on the sticky header once the page is scrolled.
+  document.addEventListener('DOMContentLoaded', function () {
+    var header = document.querySelector('.top-header');
+    if (!header) return;
+    var onScroll = function () {
+      header.classList.toggle('scrolled', window.pageYOffset > 8);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  });
+</script>
 <header class="top-header">
   <div class="container">
     <div class="col-md-4 col-sm-5 col-xs-8"><a href="#"><img class="img-responsive" src="images/logo.png" alt="#"></a></div>
@@ -406,7 +418,7 @@
       -->
 
         <div class="button-center">
-          <a class="btn btn-primary download" href="contact.html">Discuss your AI initiative</a>
+          <a class="btn btn-primary download" href="contact.html">Talk to us</a>
         </div>
       </div>
 

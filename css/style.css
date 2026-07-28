@@ -56,6 +56,18 @@ a:hover, a:focus {
 .top-header {
 	padding: 8px 0;
 	width: 100%;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background: rgba(255, 255, 255, 0.94);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid transparent;
+	transition: box-shadow 200ms ease-in-out, border-color 200ms ease-in-out;
+}
+.top-header.scrolled {
+	border-bottom-color: rgba(219, 226, 236, 0.9);
+	box-shadow: 0 4px 18px rgba(22, 32, 51, 0.06);
 }
 .header-actions {
 	align-items: center;
@@ -64,23 +76,20 @@ a:hover, a:focus {
 	padding-top: 4px;
 }
 .header-insights {
-	border: 1px solid #c8d7e8;
-	border-radius: 0;
 	color: #045fcb;
 	font-weight: 600;
-	padding: 14px 20px;
+	padding: 14px 8px;
 }
 .header-insights:hover,
 .header-insights:focus {
-	background: #eef5ff;
 	color: #045fcb;
-	text-decoration: none;
+	text-decoration: underline;
 }
 .btn.contact {
 	background: #006CEB none repeat scroll 0 0;
 	border: medium none;
-	border-radius: 0;
-	padding: 16px 25px;
+	border-radius: 9px;
+	padding: 14px 28px;
 	margin-top: 4px;
 }
 .header-actions .btn.contact {
@@ -107,8 +116,8 @@ a:hover, a:focus {
 .btn.download {
 	background: #006CEB none repeat scroll 0 0;
 	border: medium none;
-	border-radius: 0;
-	padding: 16px 25px;
+	border-radius: 9px;
+	padding: 14px 32px;
 	margin-top: 10px;
 }
 .btn.download:hover {
