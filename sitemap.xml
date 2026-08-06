@@ -8,9 +8,15 @@
   </url>
   <url>
     <loc>https://www.intellithing.com/blog/</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.intellithing.com/blog/google-ai-leadership-restructuring-killer-app-era.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.intellithing.com/blog/world-cup-2026-moneyball-forecast.html</loc>
