@@ -362,6 +362,13 @@ a:hover {
   gap: 24px;
 }
 
+.footer-colophon {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
 /* Article template */
 .article-header,
 .article-body {
