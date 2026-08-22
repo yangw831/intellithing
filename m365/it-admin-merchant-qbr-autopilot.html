@@ -53,7 +53,9 @@
       <strong>Publisher:</strong> IntelliThing, Inc. &nbsp;·&nbsp;
       <a href="https://www.intellithing.com">intellithing.com</a><br />
       <strong>App type:</strong> Microsoft 365 Copilot declarative agent<br />
-      <strong>Pricing:</strong> Free
+      <strong>Pricing:</strong> Free<br />
+      <strong>Last updated:</strong> August 22, 2026 &nbsp;·&nbsp;
+      <strong>Applies to:</strong> Merchant QBR AutoPilot v4.1
     </p>
 
     <div class="note">
@@ -72,11 +74,12 @@
 
     <h2>What it does</h2>
     <p>
-      Merchant QBR AutoPilot is a Copilot agent that helps account managers generate
-      Quarterly Business Review (QBR) scorecards directly inside Microsoft 365 Copilot
-      and Teams. Users select a merchant, provide period data, and the agent returns a
-      structured scorecard with an executive summary and a downloadable PowerPoint deck —
-      eliminating manual report preparation.
+      Merchant QBR AutoPilot is a Copilot agent that helps account managers and merchant
+      success teams prepare Quarterly Business Review (QBR) scorecards directly inside
+      Microsoft 365 Copilot and Teams. Users can generate one merchant scorecard or
+      batch-generate scorecards from a CSV or TSV file in their OneDrive. The agent returns
+      structured scorecards with executive summaries, recommended actions, PowerPoint outputs,
+      optional ZIP bundles, and organized OneDrive workspaces.
     </p>
     <p>No separate account or subscription is needed. Users authenticate with their existing Microsoft 365 identity.</p>
 
@@ -103,20 +106,30 @@
           <td>Allows the agent to send response cards within Teams conversations</td>
         </tr>
         <tr>
-          <td>Backend API access (custom)</td>
-          <td>Delegated, user-consented</td>
-          <td>Allows Copilot to call IntelliThing's merchant data API on behalf of the signed-in user to retrieve scorecard inputs. Read-only. No access to Microsoft 365 data.</td>
+          <td><code>Files.ReadWrite</code></td>
+          <td>Microsoft Graph delegated</td>
+          <td>Allows the app to search and read selected QBR data files in the signed-in user's OneDrive and, only after explicit confirmation, create or update generated QBR workspace artifacts there.</td>
+        </tr>
+        <tr>
+          <td><code>offline_access</code></td>
+          <td>Microsoft identity delegated</td>
+          <td>Keeps the user's delegated connection available without repeated sign-in prompts.</td>
         </tr>
       </tbody>
     </table>
-    <p><strong>No Microsoft Graph write permissions are requested.</strong> The agent cannot read email, calendar, files, or contacts. It cannot write to any Microsoft 365 service.</p>
+    <p>
+      The app does <strong>not</strong> request access to email or calendars, does
+      <strong>not</strong> request <code>Files.ReadWrite.All</code>, and does
+      <strong>not</strong> use application-level Microsoft Graph permissions. File search and
+      workspace saving are limited to the signed-in user's OneDrive.
+    </p>
 
     <h2>Where data lives</h2>
     <ul>
-      <li>All merchant data processing occurs in IntelliThing's Azure-hosted backend (Azure Functions, Azure Blob Storage).</li>
-      <li><strong>No user data is stored or transmitted outside of Microsoft's Azure infrastructure.</strong> IntelliThing's backend runs on Azure.</li>
-      <li>CSV data uploaded by users is processed in memory for scorecard generation and is not persisted.</li>
-      <li>Generated PowerPoint artifacts are stored in Azure Blob Storage with time-limited download links.</li>
+      <li>Merchant data processing occurs in IntelliThing's Azure-hosted backend (Azure Functions and Azure Blob Storage).</li>
+      <li>CSV or TSV file content selected from OneDrive is read for scorecard generation. Raw customer file content is processed in memory and is not persisted by the backend.</li>
+      <li>Generated PowerPoint artifacts may be stored temporarily in Azure Blob Storage with time-limited download links.</li>
+      <li>When the user explicitly confirms OneDrive delivery, generated scorecards, batch indexes, ZIP bundles, and related workspace artifacts are written to the signed-in user's OneDrive.</li>
       <li>Authentication is handled entirely by Microsoft Entra ID (OAuth 2.0 delegated flow). IntelliThing never sees user passwords or raw tokens.</li>
     </ul>
 

@@ -6,7 +6,7 @@
     <title>Merchant QBR AutoPilot | IntelliThing</title>
     <meta
       name="description"
-      content="Merchant QBR AutoPilot generates executive-ready QBR scorecards for account managers directly inside Microsoft 365 Copilot and Teams — in minutes, not hours."
+      content="Merchant QBR AutoPilot automates QBR preparation across many merchant accounts from your own CSV or TSV data inside Microsoft 365."
     />
     <link rel="canonical" href="https://www.intellithing.com/m365/merchant-qbr-autopilot.html" />
     <script src="qbr-tracking.js" defer></script>
@@ -251,8 +251,8 @@
         </div>
         <h1>Merchant QBR AutoPilot</h1>
         <p class="lead">
-          Generate executive-ready Quarterly Business Review scorecards for any merchant —
-          directly inside Microsoft 365 Copilot and Teams. In minutes, not hours.
+          Automate quarterly business review preparation across many merchant accounts —
+          from your own CSV or TSV data, directly inside Microsoft 365 Copilot and Teams.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#install"
@@ -302,44 +302,45 @@
 
         <article class="card span-6">
           <p class="kicker">What It Does</p>
-          <h2>Turns merchant data into a QBR-ready scorecard in one conversation</h2>
+          <h2>Turns merchant exports into QBR-ready scorecards in one conversation</h2>
           <p>
-            Instead of pulling data from multiple sources and building slides by hand,
-            the agent accepts sample or uploaded CSV data and returns a structured scorecard
-            with an executive summary and a downloadable PowerPoint deck.
+            Instead of rebuilding the same review across every account, the agent accepts
+            sample data, pasted CSV, or a selected CSV/TSV file in OneDrive and returns
+            structured scorecards with executive summaries, recommended actions, PowerPoint
+            outputs, and optional batch packaging.
           </p>
           <ul>
-            <li>Structured scorecard with key metrics and trend highlights</li>
-            <li>Draft executive summary ready for stakeholder review</li>
-            <li>Downloadable PPTX artifact for direct use in presentations</li>
-            <li>Consistent output quality across every account team</li>
+            <li>Single-merchant or batch scorecard generation</li>
+            <li>Executive summaries, supporting insights, and recommended actions</li>
+            <li>PowerPoint scorecards ready for direct use in QBR meetings</li>
+            <li>OneDrive folders, index files, and ZIP bundles for batch runs</li>
           </ul>
         </article>
       </section>
 
       <section class="grid" aria-label="Capabilities" style="margin-top: 20px;">
         <article class="card span-4">
-          <h3>Sample data, no setup required</h3>
+          <h3>Sample starter data, no setup required</h3>
           <p>
-            Start immediately using preloaded sample merchants. No data connection or CSV
-            upload needed to see the full scorecard output and workflow.
+            Start immediately using bundled sample merchants, or save an app-provided starter
+            CSV to OneDrive and replace the rows with your own merchant data.
           </p>
         </article>
 
         <article class="card span-4">
-          <h3>CSV-driven custom scorecards</h3>
+          <h3>OneDrive CSV/TSV scorecards</h3>
           <p>
-            Upload your own merchant data using the published CSV schema to generate
-            scorecards from real performance inputs. The agent validates the input
-            and returns explicit errors for missing or malformed fields.
+            Point the agent at a file in your OneDrive, preview the fields, then generate
+            scorecards from real performance inputs. The agent validates the file and reports
+            per-account issues clearly.
           </p>
         </article>
 
         <article class="card span-4">
-          <h3>Presentation-ready PPTX output</h3>
+          <h3>Presentation-ready outputs</h3>
           <p>
-            Every scorecard generates a branded PowerPoint deck with a time-limited
-            download link — ready to share with stakeholders or use directly in QBR meetings.
+            Every scorecard generates a branded PowerPoint deck. Batch runs can also be saved
+            to OneDrive with an index and ZIP bundle for easier review or sharing.
           </p>
         </article>
       </section>
@@ -347,23 +348,23 @@
       <section class="grid" aria-label="How It Works" style="margin-top: 20px;">
         <article class="card span-7">
           <p class="kicker">How It Works</p>
-          <h2>A simple Copilot flow from data to deck</h2>
+          <h2>A simple Copilot flow from data to QBR package</h2>
           <div class="flow">
             <div class="step">
-              <strong>1. List available merchants</strong>
-              Ask the agent to show sample merchants, or provide your own via CSV upload.
+              <strong>1. Choose sample or own data</strong>
+              Ask for sample merchants, paste CSV data, or select a CSV/TSV file from OneDrive.
             </div>
             <div class="step">
-              <strong>2. Select a merchant and period</strong>
-              Name the merchant you want. The agent confirms and prepares the scorecard inputs.
+              <strong>2. Select one merchant or a batch</strong>
+              Name one merchant, several merchants, or ask for every merchant in the file.
             </div>
             <div class="step">
-              <strong>3. Review the scorecard</strong>
-              The agent returns key metrics, trend highlights, an executive summary, and recommended actions.
+              <strong>3. Review per-account results</strong>
+              The agent returns key metrics, executive summaries, recommended actions, and row-level status.
             </div>
             <div class="step">
-              <strong>4. Download the deck</strong>
-              A branded PowerPoint file is generated and available via a time-limited download link.
+              <strong>4. Save and share the package</strong>
+              Save outputs to OneDrive, create a ZIP bundle, and open a draft Outlook email when ready.
             </div>
           </div>
         </article>
@@ -432,11 +433,12 @@
               <ul>
                 <li><strong>User identity</strong> — to personalize responses</li>
                 <li><strong>Message team members</strong> — to send response cards in Teams</li>
-                <li><strong>Backend API access</strong> — read-only access to merchant scorecard data</li>
+                <li><strong>Files.ReadWrite</strong> — selected OneDrive files and confirmed QBR workspace saves</li>
+                <li><strong>Offline access</strong> — keeps the delegated connection available without repeated sign-in</li>
               </ul>
               <p class="mini" style="margin-top: 16px;">
-                No Microsoft Graph write permissions. The agent cannot read your email, calendar, or files.
-                No user data is stored outside Microsoft's Azure infrastructure.
+                No email or calendar permissions. No Files.ReadWrite.All. No application-level file permissions.
+                OneDrive file access is delegated to the signed-in user.
               </p>
             </div>
           </div>
@@ -456,15 +458,15 @@
 
           <h3>Can I use my own merchant data?</h3>
           <p>
-            Yes. Upload a CSV following the published schema and the agent generates a scorecard from your data.
-            Sample merchants are also available for immediate use without any upload.
+            Yes. Paste CSV data in chat or select a CSV/TSV file from your OneDrive. Sample merchants
+            and starter files are also available so you can see the expected format before using your own data.
           </p>
 
           <h3>Where is data processed and stored?</h3>
           <p>
-            All processing happens in IntelliThing's Azure-hosted backend. No user data is stored or transmitted
-            outside of Microsoft's Azure infrastructure. Generated files are stored in Azure Blob Storage with
-            time-limited download links.
+            Processing happens in IntelliThing's Azure-hosted backend. Raw customer file content is processed
+            in memory and is not persisted by the backend. Generated artifacts may be stored temporarily in
+            Azure Blob Storage, and confirmed workspaces are saved to the signed-in user's OneDrive.
           </p>
 
           <h3>What Microsoft 365 plan do I need?</h3>

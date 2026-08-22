@@ -31,7 +31,7 @@
   </head>
   <body>
     <h1>Privacy Policy for Merchant QBR AutoPilot</h1>
-    <p class="meta"><strong>Last updated:</strong> June 5, 2026</p>
+    <p class="meta"><strong>Last updated:</strong> August 22, 2026 · <strong>Applies to:</strong> Merchant QBR AutoPilot v4.1</p>
 
     <p>
       This Privacy Policy describes how <strong>Merchant QBR AutoPilot</strong> ("the App", "we", "our")
@@ -43,14 +43,15 @@
     <p>When you use Merchant QBR AutoPilot, we may process:</p>
     <ul>
       <li>User identity information provided by Microsoft 365/Azure AD tokens (for authentication and authorization).</li>
-      <li>Business input data submitted in requests, such as merchant names, period selections, and CSV content you upload.</li>
+      <li>Business input data submitted in requests, such as merchant names, period selections, pasted CSV content, and CSV or TSV file content selected from OneDrive.</li>
+      <li>Generated artifacts such as PowerPoint scorecards, batch indexes, ZIP bundles, and workspace records when you explicitly choose to create or save them.</li>
       <li>Operational telemetry and logs required to run, troubleshoot, and secure the service.</li>
     </ul>
 
     <h2>2. How We Use Information</h2>
     <ul>
       <li>To authenticate users and protect access to Merchant QBR AutoPilot APIs.</li>
-      <li>To generate merchant QBR scorecards, summaries, and downloadable artifacts.</li>
+      <li>To generate merchant QBR scorecards, summaries, downloadable artifacts, ZIP bundles, and OneDrive workspace records.</li>
       <li>To monitor service reliability, investigate errors, and improve service quality and security.</li>
       <li>To comply with applicable legal and regulatory obligations.</li>
     </ul>
@@ -64,7 +65,9 @@
 
     <h2>4. Data Storage and Retention</h2>
     <ul>
-      <li>Input and generated files may be stored in Azure storage services configured for the app tenant.</li>
+      <li>Raw customer CSV or TSV file content is processed in memory and is not persisted by the backend.</li>
+      <li>Generated files may be stored temporarily in Azure storage services configured for the app.</li>
+      <li>When you explicitly confirm OneDrive delivery, generated workspace artifacts are stored in the signed-in user's OneDrive.</li>
       <li>Logs may be retained for operations, security, and audit purposes.</li>
       <li>Data is retained only as long as necessary for the purposes above or as required by law/policy.</li>
     </ul>

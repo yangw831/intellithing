@@ -31,7 +31,7 @@
   </head>
   <body>
     <h1>Support for Merchant QBR AutoPilot</h1>
-    <p class="meta"><strong>Last updated:</strong> June 5, 2026</p>
+    <p class="meta"><strong>Last updated:</strong> August 22, 2026 · <strong>Applies to:</strong> Merchant QBR AutoPilot v4.1</p>
 
     <p>
       If you need help with <strong>Merchant QBR AutoPilot</strong>, use the support channels below.
@@ -57,8 +57,9 @@
 
     <h2>3. Common Issues</h2>
     <ul>
-      <li>Scorecard generation fails: verify storage configuration and deployment health.</li>
-      <li>Sample merchant lookup errors: check API endpoint health and data file availability.</li>
+      <li>Scorecard generation fails: verify storage configuration, file schema, and deployment health.</li>
+      <li>OneDrive file search or workspace save fails: confirm delegated Microsoft Graph <code>Files.ReadWrite</code> consent and that the file is in the signed-in user's OneDrive.</li>
+      <li>Batch generation reports partial success: review the per-account status and index to identify invalid rows or failed artifacts.</li>
       <li>Authorization failures: confirm Entra app permissions and tenant/app registration state.</li>
     </ul>
 
