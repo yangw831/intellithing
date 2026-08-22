@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>How It Works — Merchant QBR AutoPilot</title>
+  <title>Product Tour - Merchant QBR AutoPilot</title>
   <link rel="canonical" href="https://www.intellithing.com/m365/tour-merchant-qbr-autopilot.html" />
   <script src="qbr-tracking.js" defer></script>
   <style>
@@ -20,7 +20,7 @@
     }
 
     /* ── Header ── */
-    .header { text-align: center; max-width: 600px; margin-bottom: 12px; }
+    .header { text-align: center; max-width: 680px; margin-bottom: 12px; }
     .logo { display: inline-flex; align-items: center; gap: 11px; margin-bottom: 14px; text-decoration: none; }
     .logo-icon {
       width: 38px; height: 38px;
@@ -29,7 +29,7 @@
       object-fit: cover;
     }
     .logo span { color: #fff; font-size: 15px; font-weight: 700; }
-    .header h1 { color: #fff; font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
+    .header h1 { color: #fff; font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
     .header h1 em { color: #0078D4; font-style: normal; }
     .philosophy {
       color: #7A9CB8; font-size: 13px; line-height: 1.7; max-width: 540px; margin: 0 auto;
@@ -37,7 +37,7 @@
     .philosophy strong { color: #A8C4DC; }
 
     /* ── Journey container ── */
-    .journey { width: 100%; max-width: 600px; margin-top: 32px; }
+    .journey { width: 100%; max-width: 680px; margin-top: 28px; }
 
     /* ── Phase header ── */
     .phase-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
@@ -51,6 +51,63 @@
     .line-blue  { background: #60AFFF; }
     .line-green { background: #7FD45A; }
     .phase-sub { font-size: 10px; color: #4A6680; font-style: italic; white-space: nowrap; }
+
+    /* Quick start */
+    .quickstart {
+      width: 100%;
+      background: #162338;
+      border: 1px solid #1E3A5F;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 26px;
+    }
+    .quickstart h2 {
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .quickstart p {
+      color: #8BA7C7;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .prompt-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+    }
+    .prompt-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #0D1825;
+      border: 1px solid #1E3A5F;
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .prompt-card code {
+      color: #A8C4DC;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: normal;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    }
+    .copy-btn {
+      background: #0078D4;
+      color: #fff;
+      border: 0;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .copy-btn:hover { background: #106EBE; }
 
     /* ── Step cards ── */
     .step-wrap { display: flex; flex-direction: column; align-items: center; }
@@ -174,7 +231,7 @@
     .footer a:hover { text-decoration: underline; }
   </style>
 </head>
-<body>
+<body data-track-page-view="qbr_tour_page_view" data-track-scroll>
 
   <!-- Header -->
   <div class="header">
@@ -182,19 +239,38 @@
       <img class="logo-icon" src="../images/merchant-qbr-autopilot-icon.png" alt="Merchant QBR AutoPilot icon" />
       <span>Merchant QBR AutoPilot</span>
     </a>
-    <h1>From a single prompt to a <em>closed-loop QBR</em></h1>
+    <h1>Turn merchant data into <em>QBR scorecards</em> you can share</h1>
     <p class="philosophy">
-      <strong>Merchant QBR AutoPilot</strong> keeps your QBR moving — from preparation through customer conversation to follow-up — without losing context between steps.
+      <strong>Merchant QBR AutoPilot</strong> helps account teams generate one merchant scorecard,
+      batch scorecards from a OneDrive CSV or TSV, organize outputs in OneDrive, and share the package with stakeholders.
     </p>
   </div>
 
   <div class="journey">
+    <section class="quickstart" aria-labelledby="quickstart-title">
+      <h2 id="quickstart-title">Start inside Microsoft 365 Copilot</h2>
+      <p>Copy one of these prompts into the Merchant QBR AutoPilot agent. Use starter data to see the flow, or point the agent at your own OneDrive file when you are ready.</p>
+      <div class="prompt-grid">
+        <div class="prompt-card">
+          <code>Generate QBR scorecards for every merchant in my OneDrive file</code>
+          <button class="copy-btn" type="button" data-prompt="Generate QBR scorecards for every merchant in my OneDrive file" data-track="qbr_tour_prompt_copy" data-cta-location="tour_batch_prompt">Copy</button>
+        </div>
+        <div class="prompt-card">
+          <code>Generate an executive QBR deck in PowerPoint from a sample Excel file</code>
+          <button class="copy-btn" type="button" data-prompt="Generate an executive QBR deck in PowerPoint from a sample Excel file" data-track="qbr_tour_prompt_copy" data-cta-location="tour_deck_prompt">Copy</button>
+        </div>
+        <div class="prompt-card">
+          <code>Show sample merchants</code>
+          <button class="copy-btn" type="button" data-prompt="Show sample merchants" data-track="qbr_tour_prompt_copy" data-cta-location="tour_sample_merchants_prompt">Copy</button>
+        </div>
+      </div>
+    </section>
 
     <!-- ══ PREP PHASE ══ -->
     <div class="phase-header">
-      <div class="phase-pill pill-prep">⚙ Prep</div>
+      <div class="phase-pill pill-prep">⚙ Prepare</div>
       <div class="phase-line line-blue"></div>
-      <div class="phase-sub">AI-assisted · Steps 1–4</div>
+      <div class="phase-sub">One merchant or batch</div>
     </div>
 
     <!-- Step 1 -->
@@ -202,10 +278,10 @@
       <div class="step-card">
         <div class="step-top">
           <span class="step-num num-blue">Step 1</span>
-          <div class="step-title">💬 Ask for a QBR deck</div>
+          <div class="step-title">💬 Choose your data path</div>
         </div>
-        <p class="step-desc">One prompt is all it takes. Merchant QBR AutoPilot picks up the Apex Retail portfolio sample and starts immediately — no configuration needed.</p>
-        <div class="prompt-pill">"Generate an executive QBR deck from sample data"</div>
+        <p class="step-desc">Use a sample merchant, save starter data to OneDrive, paste CSV rows in chat, or search for your own OneDrive CSV/TSV by file name.</p>
+        <div class="prompt-pill">"Use my OneDrive merchant file" or "Use starter data"</div>
       </div>
       <div class="connector">
         <div class="conn-line cl-blue"></div>
@@ -218,15 +294,16 @@
       <div class="step-card">
         <div class="step-top">
           <span class="step-num num-blue">Step 2</span>
-          <div class="step-title">📊 Deck delivered ✅</div>
+          <div class="step-title">📊 Generate scorecards</div>
         </div>
-        <p class="step-desc">A multi-page executive PowerPoint covering regional performance, authorization funnel, cost analysis, dispute risk, and Q3 strategic actions.</p>
+        <p class="step-desc">Create PowerPoint scorecards for one merchant or every merchant in the file, with validation details for rows that need attention.</p>
         <div class="kpi-row">
           <div class="kpi"><div class="val">$8.84M</div><div class="lbl">Total GMV</div></div>
           <div class="kpi"><div class="val">91.3%</div><div class="lbl">Auth Success</div></div>
           <div class="kpi"><div class="val">2.14%</div><div class="lbl">Cost of Accept.</div></div>
         </div>
-        <a class="dl-btn" href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html">⬇ Try it — get the sample deck</a>
+        <a class="dl-btn" href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html?utm_source=qbr_tour&amp;utm_medium=internal_link&amp;utm_campaign=merchant_qbr_autopilot&amp;utm_content=step2_get_started"
+           data-track="qbr_install_cta_click" data-cta-location="tour_step2_get_started">Try it in Microsoft 365</a>
       </div>
       <div class="connector">
         <div class="conn-line cl-blue"></div>
@@ -239,14 +316,14 @@
       <div class="step-card">
         <div class="step-top">
           <span class="step-num num-blue">Step 3</span>
-          <div class="step-title">🗂️ Save to workspace</div>
+          <div class="step-title">🗂️ Save to OneDrive</div>
         </div>
-        <p class="step-desc">The deck, source workbook, and QBR summary are saved together in a dedicated OneDrive folder — organized and ready to share or revisit anytime.</p>
-        <div class="path-box">Merchant QBR AutoPilot / QBR Workspaces / Apex Retail Global / 2026-Q2</div>
+        <p class="step-desc">For own-data batches, the generated decks are saved in an organized OneDrive batch workspace next to the source file context.</p>
+        <div class="path-box">Merchant QBR AutoPilot / QBR Workspaces / Batch Runs / 2026-Q2</div>
         <div>
           <span class="tag">📊 PowerPoint</span>
-          <span class="tag">📗 Excel workbook</span>
-          <span class="tag">📝 QBR summary</span>
+          <span class="tag">📄 CSV / TSV source</span>
+          <span class="tag">🧾 Batch status</span>
         </div>
       </div>
       <div class="connector">
@@ -260,21 +337,21 @@
       <div class="step-card">
         <div class="step-top">
           <span class="step-num num-blue">Step 4</span>
-          <div class="step-title">📉 Spot changes</div>
+          <div class="step-title">📦 Package the batch</div>
         </div>
-        <p class="step-desc">Surface material period-over-period performance shifts and build your narrative before walking into the room.</p>
+        <p class="step-desc">After scorecards are generated, create a ZIP bundle in the same OneDrive workspace so the batch is easy to download or share.</p>
         <ul class="discussion-list">
           <li>
             <span class="bullet">›</span>
-            <span><strong>Authorization rate dropped in APAC Local Cards (−140 bps)</strong> — discuss local acquiring strategy</span>
+            <span><strong>One ZIP package</strong> — all generated merchant PowerPoint scorecards in one place</span>
           </li>
           <li>
             <span class="bullet">›</span>
-            <span><strong>EMEA / APM is the weakest corridor (−160 bps)</strong> — potential network token rollout opportunity</span>
+            <span><strong>OneDrive-hosted link</strong> — easier to revisit than temporary generated-file URLs</span>
           </li>
           <li>
             <span class="bullet">›</span>
-            <span><strong>APAC volume grew +23.6%</strong> despite auth decline — growth at risk without intervention</span>
+            <span><strong>Batch summary</strong> — source file, generated count, and included merchants ready for review</span>
           </li>
         </ul>
       </div>
@@ -290,13 +367,13 @@
     <div class="meeting-node">
       <div class="meeting-icon-wrap">🤝</div>
       <div class="meeting-text">
-        <h3>Customer meeting</h3>
-        <p>You walk in prepared. The deck, the data, and the narrative are ready.<br/>This is the human conversation — between you and your merchant.</p>
+        <h3>Review and share</h3>
+        <p>You have the scorecards, the batch workspace, and the ZIP bundle ready for internal review or merchant-facing QBR prep.</p>
       </div>
       <div class="ai-badge">
         <div class="row r-prep">AI prep</div>
         <div class="row r-arrow">↓</div>
-        <div class="row r-human">You + merchant</div>
+        <div class="row r-human">Review</div>
         <div class="row r-arrow">↓</div>
         <div class="row r-follow">AI follow-up</div>
       </div>
@@ -309,9 +386,9 @@
 
     <!-- ══ FOLLOW-UP PHASE ══ -->
     <div class="phase-header">
-      <div class="phase-pill pill-followup">✔ Follow up</div>
+      <div class="phase-pill pill-followup">✔ Share</div>
       <div class="phase-line line-green"></div>
-      <div class="phase-sub" style="color:#3A6A2A;">AI-assisted · Step 5</div>
+      <div class="phase-sub" style="color:#3A6A2A;">Email-ready output</div>
     </div>
 
     <!-- Step 5 -->
@@ -319,25 +396,25 @@
       <div class="step-card followup">
         <div class="step-top">
           <span class="step-num num-green">Step 5</span>
-          <div class="step-title" style="color:#C4DCBA;">📋 Capture outcome</div>
+          <div class="step-title" style="color:#C4DCBA;">✉️ Draft the summary email</div>
         </div>
-        <p class="step-desc">After the meeting — log what was agreed so nothing falls through the cracks.</p>
+        <p class="step-desc">When the ZIP is ready, open a short Outlook draft with the batch summary and OneDrive ZIP link included.</p>
         <ul class="checklist">
           <li>
             <span class="check">✓</span>
-            <span class="check-text"><strong>Decisions captured</strong> — LATAM/APAC auth leakage prioritized; NAMER/EMEA growth plan preserved</span>
+            <span class="check-text"><strong>Source named</strong> — the merchant data file is listed for context</span>
           </li>
           <li>
             <span class="check">✓</span>
-            <span class="check-text"><strong>Owners assigned</strong> — Maya: corridor-level recovery plan by July 9 · Theo: dispute review by July 16</span>
+            <span class="check-text"><strong>Generated count included</strong> — stakeholders can see how many scorecards are ready</span>
           </li>
           <li>
             <span class="check">✓</span>
-            <span class="check-text"><strong>Follow-up drafted</strong> — summary email ready to send to Apex Retail stakeholders</span>
+            <span class="check-text"><strong>ZIP link included</strong> — recipients can download the scorecard package</span>
           </li>
           <li>
             <span class="check">✓</span>
-            <span class="check-text"><strong>Next review scheduled</strong> — October 8, 2026</span>
+            <span class="check-text"><strong>You stay in control</strong> — add recipients, review, and send from Outlook</span>
           </li>
         </ul>
       </div>
@@ -348,10 +425,39 @@
   <div class="footer">
     Merchant QBR AutoPilot by <a href="https://www.intellithing.com">IntelliThing</a>
     &nbsp;·&nbsp;
-    <a href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html">Get started</a>
+    <a href="https://www.intellithing.com/m365/get-started-merchant-qbr-autopilot.html?utm_source=qbr_tour&amp;utm_medium=internal_link&amp;utm_campaign=merchant_qbr_autopilot&amp;utm_content=footer_get_started"
+       data-track="qbr_install_cta_click" data-cta-location="tour_footer_get_started">Get started</a>
     &nbsp;·&nbsp;
-    <a href="https://www.intellithing.com/m365/support-merchant-qbr-autopilot.html">Support</a>
+    <a href="https://www.intellithing.com/m365/support-merchant-qbr-autopilot.html?utm_source=qbr_tour&amp;utm_medium=internal_link&amp;utm_campaign=merchant_qbr_autopilot&amp;utm_content=footer_support"
+       data-track="qbr_contact_click" data-cta-location="tour_footer_support">Support</a>
   </div>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.copy-btn[data-prompt]');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var prompt = btn.getAttribute('data-prompt') || '';
+          var original = btn.textContent;
+          function done() {
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = original; }, 1800);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(prompt).then(done, done);
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = prompt;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            done();
+          }
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
