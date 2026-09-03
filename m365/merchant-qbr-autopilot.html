@@ -217,6 +217,15 @@
         border-radius: 8px;
         padding: 8px 12px;
         white-space: nowrap;
+        text-decoration: none;
+        display: inline-block;
+        transition: background 0.15s, border-color 0.15s;
+      }
+      a.app-name-chip:hover,
+      a.app-name-chip:focus-visible {
+        background: #fff;
+        border-color: var(--brand);
+        color: var(--brand);
       }
 
       .btn-copy {
@@ -278,7 +287,9 @@
             </p>
           </div>
           <div class="copy-row">
-            <span class="app-name-chip" id="qbr-app-name">Merchant QBR AutoPilot</span>
+            <a class="app-name-chip" id="qbr-app-name"
+               href="https://marketplace.microsoft.com/en-us/product/WA200010195?utm_source=qbr_product_page&amp;utm_medium=internal_link&amp;utm_campaign=merchant_qbr_autopilot&amp;utm_content=hero_install_strip_chip"
+               data-track="qbr_appsource_click" data-cta-location="hero_install_strip_chip">Merchant QBR AutoPilot</a>
             <button type="button" class="btn-copy" id="qbr-copy-app-name" data-cta-location="hero_install_strip">Copy name</button>
           </div>
         </div>
@@ -409,7 +420,9 @@
                 <li>Your admin approves it at M365 Admin Center → Agents → All agents → Requests.</li>
               </ol>
               <div class="copy-row" style="margin: 6px 0 14px;">
-                <span class="app-name-chip">Merchant QBR AutoPilot</span>
+                <a class="app-name-chip"
+                   href="https://marketplace.microsoft.com/en-us/product/WA200010195?utm_source=qbr_product_page&amp;utm_medium=internal_link&amp;utm_campaign=merchant_qbr_autopilot&amp;utm_content=install_section_chip"
+                   data-track="qbr_appsource_click" data-cta-location="install_section_chip">Merchant QBR AutoPilot</a>
                 <button type="button" class="btn-copy" id="qbr-copy-app-name-install" data-cta-location="install_section">Copy name</button>
               </div>
               <div class="cta-row">
