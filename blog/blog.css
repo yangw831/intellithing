@@ -465,6 +465,24 @@ a:hover {
   line-height: 1.45;
 }
 
+.article-body code {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--brand-dark);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  white-space: nowrap;
+}
+
+.article-table code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
 .article-table-wrap {
   margin: 30px 0;
   overflow-x: auto;

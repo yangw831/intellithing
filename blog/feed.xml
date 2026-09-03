@@ -5,8 +5,16 @@
     <link>https://www.intellithing.com/blog/</link>
     <description>Practical analysis of AI, merchant portfolio management, agentic commerce, fintech, and Microsoft 365 Copilot agents.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Aug 2026 17:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 17:00:00 GMT</lastBuildDate>
     <atom:link href="https://www.intellithing.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>From Merchant CSV Data to an Executive-Ready QBR</title>
+      <link>https://www.intellithing.com/blog/merchant-csv-to-executive-qbr.html</link>
+      <guid isPermaLink="true">https://www.intellithing.com/blog/merchant-csv-to-executive-qbr.html</guid>
+      <pubDate>Thu, 03 Sep 2026 17:00:00 GMT</pubDate>
+      <description>A step-by-step walkthrough of what happens between a merchant portfolio export and a presentable QBR: the required schema, row-level validation, the fixed thresholds behind every judgment, and the explanation attached to each generated sentence.</description>
+    </item>
 
     <item>
       <title>Google AI Presents: The Product Awakens</title>

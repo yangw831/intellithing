@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From merchant CSV data to an executive-ready QBR | IntelliThing Insights</title>
+    <meta name="description" content="A step-by-step walkthrough of what happens between a merchant portfolio export and a presentable QBR: the required schema, the validation, the fixed thresholds, and the explanation behind every generated sentence." />
+    <link rel="canonical" href="https://www.intellithing.com/blog/merchant-csv-to-executive-qbr.html" />
+    <link rel="icon" href="../images/logo.png" />
+    <link rel="stylesheet" href="blog.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="IntelliThing Insights" />
+    <meta property="og:title" content="From merchant CSV data to an executive-ready QBR" />
+    <meta property="og:description" content="The required schema, the validation, the fixed thresholds, and the explanation behind every generated sentence in an automated merchant QBR scorecard." />
+    <meta property="og:url" content="https://www.intellithing.com/blog/merchant-csv-to-executive-qbr.html" />
+    <meta property="og:image" content="https://www.intellithing.com/images/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="From merchant CSV data to an executive-ready QBR" />
+    <meta name="twitter:description" content="The required schema, the validation, the fixed thresholds, and the explanation behind every generated sentence in an automated merchant QBR scorecard." />
+    <meta name="twitter:image" content="https://www.intellithing.com/images/logo.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.intellithing.com/#yang-w",
+            "name": "Yang Wang",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.intellithing.com/#organization"
+            },
+            "url": "https://www.intellithing.com/"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://www.intellithing.com/#organization",
+            "name": "IntelliThing",
+            "url": "https://www.intellithing.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.intellithing.com/images/logo.png"
+            }
+          },
+          {
+            "@type": "BlogPosting",
+            "@id": "https://www.intellithing.com/blog/merchant-csv-to-executive-qbr.html#article",
+            "headline": "From merchant CSV data to an executive-ready QBR",
+            "description": "A step-by-step walkthrough of what happens between a merchant portfolio export and a presentable QBR: the required schema, the validation, the fixed thresholds, and the explanation behind every generated sentence.",
+            "datePublished": "2026-09-03",
+            "dateModified": "2026-09-03",
+            "author": {
+              "@id": "https://www.intellithing.com/#yang-w"
+            },
+            "publisher": {
+              "@id": "https://www.intellithing.com/#organization"
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://www.intellithing.com/blog/merchant-csv-to-executive-qbr.html"
+            },
+            "articleSection": "Microsoft 365 Copilot agents",
+            "keywords": [
+              "merchant QBR",
+              "quarterly business review",
+              "Microsoft 365 Copilot agent",
+              "CSV schema",
+              "authorization rate",
+              "chargeback rate",
+              "interchange downgrade",
+              "explainable automation"
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.intellithing.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Insights",
+                "item": "https://www.intellithing.com/blog/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "From merchant CSV data to an executive-ready QBR",
+                "item": "https://www.intellithing.com/blog/merchant-csv-to-executive-qbr.html"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What columns does a merchant QBR export need?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nine: Merchant_Name, Top_Category, Auth_Rate, Top_Decline_Reason, Chargeback_Rate, Loyalty_Spend_Lift, Interchange_Downgrade_bps, AEO_Visibility_Score, and Monthly_Volume. Column order does not matter and extra columns are ignored, but a missing required header stops the run before any row is read."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I have to reformat percentages and currency before uploading?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. The parser normalizes the formats spreadsheets and BI tools actually emit: 96% and 0.96, $850,000 and 850k and 1.2M, 12 bps and 12, 1.4x and 1.4, and parenthetical negatives such as (1,200). Comma and tab delimited files are both detected automatically."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does an automated QBR scorecard decide what to say?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Through fixed numeric thresholds, not model judgment. Authorization at or above 95% is strong and at or above 90% is stable; chargebacks below 0.3% are low and at or below 1% are watch; AEO visibility at or above 0.8 is high and at or above 0.5 is moderate. The same input always produces the same wording."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can an automated merchant QBR be presented without review?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Automation should be treated as a prepared first draft. It reports what the export contains and cannot know about a pricing change, an outage, a migration, or a relationship issue that explains the numbers. The account manager still owns the causal claim and the commitment made in the room."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="../index.html" aria-label="IntelliThing home">
+          <img src="../images/logo.png" alt="IntelliThing" />
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="../index.html">Home</a>
+          <a href="./" aria-current="page">Insights</a>
+          <a class="nav-cta" href="../contact.html">Discuss a project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="./">Insights</a></li>
+          <li aria-current="page">CSV to executive QBR</li>
+        </ol>
+      </nav>
+      <article>
+        <header class="article-header">
+          <div class="eyebrow">Microsoft 365 Copilot agents</div>
+          <h1>From merchant CSV data to an executive-ready QBR</h1>
+          <p class="article-dek">
+            &ldquo;AI generates your QBR&rdquo; hides five distinct pieces of work.
+            This is a walkthrough of each one, including the schema it demands,
+            the thresholds it applies, and the receipt it leaves behind.
+          </p>
+          <div class="article-byline">
+            By <a href="#about-the-author" rel="author">Yang Wang</a> &middot; September 3, 2026 &middot; 10 minute read
+          </div>
+          <div class="share-row">
+            <span class="share-label">Share</span>
+            <a class="share-pill" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.intellithing.com%2Fblog%2Fmerchant-csv-to-executive-qbr.html" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+            <a class="share-pill" href="https://x.com/intent/post?url=https%3A%2F%2Fwww.intellithing.com%2Fblog%2Fmerchant-csv-to-executive-qbr.html&amp;text=From%20Merchant%20CSV%20Data%20to%20an%20Executive-Ready%20QBR" target="_blank" rel="noopener" aria-label="Share on X" title="Share on X">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.4z"/></svg>
+            </a>
+            <button class="share-pill share-copy" type="button" aria-label="Copy link" title="Copy link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="article-body">
+          <aside class="article-summary" aria-labelledby="direct-answer">
+            <strong id="direct-answer">What actually happens between a merchant export and a QBR deck?</strong>
+            <p>
+              Five steps: a strict nine-column schema, row-level validation that
+              names the field it rejected, fixed numeric thresholds that band each
+              metric, a narrative assembled from those bands, and a PowerPoint file
+              written into a predictable folder. Each step is deterministic, so the
+              same export always produces the same scorecard.
+            </p>
+          </aside>
+
+          <nav class="article-toc" aria-label="Article contents">
+            <strong>In this article</strong>
+            <ol>
+              <li><a href="#the-gap">The gap an export leaves open</a></li>
+              <li><a href="#schema">Step 1: a schema strict enough to trust</a></li>
+              <li><a href="#validation">Step 2: validation that names the row</a></li>
+              <li><a href="#thresholds">Step 3: fixed thresholds, not judgment</a></li>
+              <li><a href="#narrative">Step 4: the narrative and its receipt</a></li>
+              <li><a href="#artifacts">Step 5: the deck and the folder it lives in</a></li>
+              <li><a href="#judgment">What stays with the account manager</a></li>
+              <li><a href="#practical-steps">Practical next steps</a></li>
+              <li><a href="#faq">Frequently asked questions</a></li>
+            </ol>
+          </nav>
+
+          <aside class="methodology-note">
+            <strong>Evidence note:</strong> the schema, thresholds, and output
+            structure described here are the production behavior of
+            <a href="../m365/merchant-qbr-autopilot.html">Merchant QBR AutoPilot</a>,
+            an IntelliThing Microsoft 365 Copilot agent, as of September 3, 2026.
+            The worked example uses synthetic merchant figures, not customer data.
+            Thresholds are product design decisions, not published industry
+            benchmarks; treat them as a consistent internal yardstick rather than a
+            standard.
+          </aside>
+
+          <p>
+            Every account manager running a merchant portfolio has the same
+            artifact sitting in a folder: an export. It is complete, it is current,
+            and it is not a review. Between that file and a conversation with a
+            merchant&rsquo;s executives lies a chain of small, unglamorous decisions
+            &mdash; which columns matter, what counts as a bad number, which of the
+            bad numbers deserves a slide, and how to say it in a sentence somebody
+            will act on.
+          </p>
+          <p>
+            &ldquo;AI generates your QBR&rdquo; compresses that chain into four
+            words. It is worth decompressing, because the interesting question is
+            not whether software can produce a deck. It is which of those decisions
+            the software is making on your behalf, and whether you can see them.
+          </p>
+
+          <h2 id="the-gap">The gap an export leaves open</h2>
+          <p>
+            An export answers &ldquo;what were the numbers?&rdquo; A review has to
+            answer three harder questions: which numbers changed enough to mention,
+            what that implies about the merchant&rsquo;s business, and what should
+            happen before the next review. Those three are where preparation time
+            actually goes &mdash; a pattern I wrote about in
+            <a href="merchant-account-managers-qbr-preparation.html">why merchant
+            account managers lose days to QBR preparation</a>.
+          </p>
+          <p>
+            Automating that gap responsibly means being explicit about a tradeoff.
+            A system that reads any file and infers meaning is flexible and
+            unpredictable. A system that demands a known shape and applies published
+            rules is rigid and repeatable. For a document that gets presented to a
+            merchant&rsquo;s leadership team, repeatable wins. Everything below is a
+            consequence of choosing that side.
+          </p>
+
+          <h2 id="schema">Step 1: a schema strict enough to trust</h2>
+          <p>
+            The scorecard requires nine columns. Not nine suggested columns &mdash;
+            nine required headers, checked before a single row is parsed. If one is
+            missing, the run stops and names it, rather than generating a partial
+            scorecard with a silently absent metric.
+          </p>
+
+          <div class="article-table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Required column</th>
+                  <th>What it carries</th>
+                  <th>Formats accepted</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Merchant_Name</td>
+                  <td>The account the scorecard is about</td>
+                  <td>Text, non-empty</td>
+                </tr>
+                <tr>
+                  <td>Top_Category</td>
+                  <td>Merchant category, used in the summary line</td>
+                  <td>Text, non-empty</td>
+                </tr>
+                <tr>
+                  <td>Auth_Rate</td>
+                  <td>Authorization approval rate</td>
+                  <td><code>0.96</code> or <code>96%</code></td>
+                </tr>
+                <tr>
+                  <td>Top_Decline_Reason</td>
+                  <td>Leading decline reason, drives a recommended action</td>
+                  <td>Text, non-empty</td>
+                </tr>
+                <tr>
+                  <td>Chargeback_Rate</td>
+                  <td>Disputes as a share of transactions</td>
+                  <td><code>0.001</code> or <code>0.10%</code></td>
+                </tr>
+                <tr>
+                  <td>Loyalty_Spend_Lift</td>
+                  <td>Spend uplift among loyalty participants</td>
+                  <td><code>1.4</code> or <code>1.4x</code></td>
+                </tr>
+                <tr>
+                  <td>Interchange_Downgrade_bps</td>
+                  <td>Acceptance cost leakage in basis points</td>
+                  <td><code>12</code> or <code>12 bps</code></td>
+                </tr>
+                <tr>
+                  <td>AEO_Visibility_Score</td>
+                  <td>Answer-engine visibility, scored 0 to 1</td>
+                  <td><code>0.82</code> or <code>82%</code></td>
+                </tr>
+                <tr>
+                  <td>Monthly_Volume</td>
+                  <td>Monthly processed volume</td>
+                  <td><code>850000</code>, <code>$850,000</code>, <code>850k</code>, <code>1.2M</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            The strictness is deliberately placed at the header level and nowhere
+            else. Column order does not matter. Extra columns are ignored, so you
+            can hand over a wider export without pruning it. Comma and tab delimited
+            files are both detected automatically by comparing delimiter counts in
+            the header line, which matters more than it sounds &mdash; a
+            spreadsheet saved as &ldquo;CSV&rdquo; in a European locale is
+            frequently neither.
+          </p>
+          <p>
+            Value formatting is forgiving on purpose, because the mismatch between
+            what a BI tool exports and what a parser wants is the single most common
+            reason an automation attempt dies in the first two minutes. Currency
+            symbols, thousands separators, trailing <code>%</code>, <code>bps</code>
+            and <code>x</code> suffixes, k/M/B magnitude suffixes, and accountancy
+            negatives in parentheses are all normalized before validation. A
+            percentage sign is not merely stripped: on the three rate fields it
+            divides by one hundred, so <code>96%</code> and <code>0.96</code> mean
+            the same thing rather than differing by two orders of magnitude.
+          </p>
+
+          <h2 id="validation">Step 2: validation that names the row</h2>
+          <p>
+            Once headers pass, each row is validated independently. Rates and the
+            visibility score must fall between 0 and 1; volume must be
+            non-negative; the three text fields must not be empty; the column count
+            must match the header count. A row that fails is excluded from the
+            output rather than repaired by guesswork.
+          </p>
+          <p>
+            Two design choices here matter more than the rules themselves. First,
+            errors carry the row number and the field name, plus an example of the
+            expected format &mdash; &ldquo;Expected a numeric authorization rate such
+            as 0.96 or 96%&rdquo; is a fixable message in a way that &ldquo;invalid
+            input&rdquo; is not. Second, one bad row does not fail the file. In a
+            portfolio run, the accounts that parsed cleanly still produce
+            scorecards, and the index written alongside them records which accounts
+            need attention and why. For anyone who has watched a batch job abort on
+            row 34 of 40, that distinction is the whole difference between a tool
+            and an obstacle.
+          </p>
+          <p>
+            One quiet default is worth knowing: if you do not state a reporting
+            period, the agent uses the most recently completed quarter rather than
+            inventing one. Asked in September 2026, that is Q2 2026.
+          </p>
+
+          <h2 id="thresholds">Step 3: fixed thresholds, not judgment</h2>
+          <p>
+            This is the step most likely to be assumed away. When a scorecard says
+            authorization performance is &ldquo;stable,&rdquo; something decided
+            that. It is not a language model forming an impression of the number.
+            Each metric is placed in a band by a fixed comparison.
+          </p>
+
+          <div class="article-table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Band and cutoff</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Authorization rate</td>
+                  <td>Strong at 95% and above &middot; stable at 90% and above &middot; otherwise at risk</td>
+                </tr>
+                <tr>
+                  <td>Chargeback rate</td>
+                  <td>Low below 0.3% &middot; watch at 1% and below &middot; otherwise elevated</td>
+                </tr>
+                <tr>
+                  <td>AEO visibility</td>
+                  <td>High at 0.8 and above &middot; moderate at 0.5 and above &middot; otherwise low</td>
+                </tr>
+                <tr>
+                  <td>Interchange downgrade</td>
+                  <td>Optimized below 10 bps &middot; moderate leakage at 30 bps and below &middot; otherwise high leakage</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Published cutoffs are arguable, which is the point. An account team can
+            look at &ldquo;at risk below 90%&rdquo; and say that for their card-not-
+            present portfolio the line belongs at 92%. That is a productive
+            disagreement about a visible number. It is not available at all when the
+            same judgment is buried inside a generated paragraph.
+          </p>
+          <p>
+            The practical consequence is determinism. The same row produces the same
+            band, the same sentence, and the same recommended actions on Tuesday as
+            it did on Monday. A QBR that quietly rewords itself between the dry run
+            and the meeting is not a tool anyone should present from.
+          </p>
+
+          <h2 id="narrative">Step 4: the narrative and its receipt</h2>
+          <p>
+            From those bands the scorecard assembles a fixed set of fields: three
+            executive summary lines, two visibility insights, and three recommended
+            actions. Take a synthetic account &mdash; Riverbend Home Goods, Home
+            &amp; Garden, 91.2% authorization, 0.71% chargebacks, 1.4x loyalty spend
+            lift, 22 bps of downgrade, 0.58 visibility, $640,000 monthly volume. The
+            bands resolve to stable, watch, moderate leakage, and moderate
+            visibility, and the summary comes out as:
+          </p>
+          <blockquote>
+            <p>
+              Riverbend Home Goods posted 91.2% authorization with watch chargeback
+              risk at 0.71%. Loyalty spend lift reached 1.4x while interchange
+              downgrade exposure sits at 22 bps (moderate leakage). AEO visibility is
+              moderate at 58.0% across $640,000 monthly volume in Home &amp; Garden.
+            </p>
+          </blockquote>
+          <p>
+            The recommended actions are generated the same way, each pinned to a
+            measured value rather than a generic best practice &mdash; reduce
+            &ldquo;Do Not Honor&rdquo; declines by tuning retry logic and payment
+            validation; cut downgrade from 22 bps with richer transaction data and
+            network qualification checks; raise visibility from 58.0% through
+            category-page optimization and refreshed metadata.
+          </p>
+          <p>
+            The part I would argue is the most useful, and the part that is easiest
+            to omit, is the receipt. Every generated line carries a structured
+            explanation alongside it: which input fields it drew on, the rule applied
+            in plain language, and the raw values used. The first summary line above
+            reports its sources as the authorization and chargeback rates, its rule
+            as the two banding scales, and its values as 0.912 and 0.0071.
+          </p>
+          <p>
+            That turns a challenge in a meeting from an argument into a lookup. When
+            somebody asks why the deck called their disputes a watch item, the answer
+            is a threshold and a number, available before the question is asked. An
+            explanation produced on demand after the fact is a different and much
+            weaker thing than one emitted at the moment the sentence was written.
+          </p>
+
+          <h2 id="artifacts">Step 5: the deck and the folder it lives in</h2>
+          <p>
+            The generated fields are substituted into a real PowerPoint template, so
+            the output is an ordinary <code>.pptx</code> that opens, edits, and
+            re-brands like any other deck &mdash; not an image or a PDF of a slide.
+            The generator reports how many placeholders it filled and, importantly,
+            lists any it could not resolve, so a template drifting out of sync with
+            the field set surfaces as a warning instead of an empty box discovered
+            on stage.
+          </p>
+          <p>
+            Where the file goes matters as much as what is in it. Saved output lands
+            in one convention inside the signed-in user&rsquo;s own OneDrive:
+            <em>Merchant QBR AutoPilot &rsaquo; QBR Workspaces &rsaquo; account
+            &rsaquo; review period</em>, with periods normalized so &ldquo;Q1
+            2026&rdquo; becomes the sortable folder <code>2026-Q1</code>. Alongside
+            the deck sits the source workbook and a Markdown summary with empty
+            headings for meeting notes, decisions and commitments, and the next
+            review date.
+          </p>
+          <p>
+            Those empty headings are the quiet answer to the failure mode where last
+            quarter&rsquo;s commitments cannot be found when this quarter&rsquo;s
+            review starts. The deck alone is a document. The deck, its source data,
+            and the notes in one predictable folder are a review that the next one
+            can build on.
+          </p>
+          <p>
+            Nothing is written without an explicit yes. The agent asks before it
+            saves, and if a save partially succeeds it reports exactly which
+            artifacts landed and which failed rather than retrying silently against
+            stale content. Browsing an existing workspace is strictly read-only.
+          </p>
+
+          <h2 id="judgment">What stays with the account manager</h2>
+          <p>
+            Being specific about limits is part of describing the work honestly.
+          </p>
+          <p>
+            <strong>The scorecard reports; it does not explain.</strong> It can tell
+            you authorization sits at 91.2% and that the leading decline reason is
+            Do Not Honor. It cannot know about the pricing change in month two, the
+            processor migration, the outage, or the merchant&rsquo;s new checkout
+            vendor. Causation is the account manager&rsquo;s contribution, and it is
+            the part the merchant is actually paying attention to.
+          </p>
+          <p>
+            <strong>Thresholds are a yardstick, not a benchmark.</strong> The
+            cutoffs are consistent, which makes them useful for comparison across a
+            portfolio and across quarters. They are not industry standards, and a
+            team with better internal baselines should say so out loud in the
+            review.
+          </p>
+          <p>
+            <strong>Scale is bounded today.</strong> A portfolio run generates
+            scorecards for the first eight merchant rows in a file. That is a real
+            limit worth planning around: it is a way to cover a top-accounts tier
+            quickly, not to process a book of two hundred in one pass.
+          </p>
+          <p>
+            <strong>Some capabilities are demonstrations.</strong> The multi-page
+            executive deck preview, matched-period change detection, and meeting
+            follow-up capture currently run on bundled sample content so you can see
+            the output format. They do not yet read your files. Scorecard
+            generation, single and batch, is the part that works on your own data
+            today &mdash; and a product that is clear about which half is which is
+            easier to trust than one that is not.
+          </p>
+
+          <h2 id="practical-steps">Practical next steps</h2>
+          <ol>
+            <li>
+              Open your current merchant export and check it against the nine
+              columns above. Most portfolio exports already contain seven or eight
+              of them under different names; the gap is usually a rename, not a new
+              data pipeline.
+            </li>
+            <li>
+              Write down your own cutoffs for authorization, chargebacks, and
+              acceptance cost before you evaluate any tool. If your team cannot
+              agree on when a number becomes a talking point, no automation will
+              settle it for you &mdash; and having the list makes any vendor&rsquo;s
+              thresholds immediately assessable.
+            </li>
+            <li>
+              Pick one account and time the path from export to a deck you would
+              actually present. That single measurement is the baseline every claim
+              about time saved should be checked against, including ours.
+            </li>
+            <li>
+              If the workflow fits, <a href="../m365/merchant-qbr-autopilot.html">Merchant
+              QBR AutoPilot</a> runs it inside Microsoft 365 Copilot against a CSV or
+              TSV file in your own OneDrive. It is free, and the
+              <a href="../m365/get-started-merchant-qbr-autopilot.html">get-started
+              guide</a> covers installation, including the IT approval your tenant
+              may require.
+            </li>
+          </ol>
+
+          <section id="faq" aria-labelledby="faq-heading">
+            <h2 id="faq-heading">Frequently asked questions</h2>
+            <div class="faq-list">
+              <div class="faq-item">
+                <h3>What columns does a merchant QBR export need?</h3>
+                <p>
+                  Nine: Merchant_Name, Top_Category, Auth_Rate, Top_Decline_Reason,
+                  Chargeback_Rate, Loyalty_Spend_Lift, Interchange_Downgrade_bps,
+                  AEO_Visibility_Score, and Monthly_Volume. Column order does not
+                  matter and extra columns are ignored, but a missing required
+                  header stops the run before any row is read.
+                </p>
+              </div>
+              <div class="faq-item">
+                <h3>Do I have to reformat percentages and currency before uploading?</h3>
+                <p>
+                  No. The parser normalizes the formats spreadsheets and BI tools
+                  actually emit: 96% and 0.96, $850,000 and 850k and 1.2M, 12 bps
+                  and 12, 1.4x and 1.4, and parenthetical negatives such as (1,200).
+                  Comma and tab delimited files are both detected automatically.
+                </p>
+              </div>
+              <div class="faq-item">
+                <h3>How does an automated QBR scorecard decide what to say?</h3>
+                <p>
+                  Through fixed numeric thresholds, not model judgment.
+                  Authorization at or above 95% is strong and at or above 90% is
+                  stable; chargebacks below 0.3% are low and at or below 1% are
+                  watch; AEO visibility at or above 0.8 is high and at or above 0.5
+                  is moderate. The same input always produces the same wording.
+                </p>
+              </div>
+              <div class="faq-item">
+                <h3>Can an automated merchant QBR be presented without review?</h3>
+                <p>
+                  No. Automation should be treated as a prepared first draft. It
+                  reports what the export contains and cannot know about a pricing
+                  change, an outage, a migration, or a relationship issue that
+                  explains the numbers. The account manager still owns the causal
+                  claim and the commitment made in the room.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <aside class="share-block" aria-label="Share this article">
+            <div>
+              <strong>Found this useful?</strong>
+              <p>
+                Send it to the colleague who rebuilds the same review deck every
+                quarter.
+              </p>
+            </div>
+            <div class="share-buttons">
+              <a class="share-pill" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.intellithing.com%2Fblog%2Fmerchant-csv-to-executive-qbr.html" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+              <a class="share-pill" href="https://x.com/intent/post?url=https%3A%2F%2Fwww.intellithing.com%2Fblog%2Fmerchant-csv-to-executive-qbr.html&amp;text=From%20Merchant%20CSV%20Data%20to%20an%20Executive-Ready%20QBR" target="_blank" rel="noopener" aria-label="Share on X" title="Share on X">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.4z"/></svg>
+              </a>
+              <button class="share-pill share-copy" type="button" aria-label="Copy link" title="Copy link">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </button>
+            </div>
+          </aside>
+
+          <aside class="article-cta">
+            <strong>Relevant IntelliThing product</strong>
+            <p>
+              Every step in this walkthrough describes
+              <a href="../m365/merchant-qbr-autopilot.html">Merchant QBR
+              AutoPilot</a>, a free Microsoft 365 Copilot agent that turns a merchant
+              CSV or TSV file in your OneDrive into scorecards, PowerPoint decks, and
+              an organized QBR workspace.
+            </p>
+          </aside>
+
+          <aside class="author-card" id="about-the-author">
+            <div class="author-mark" aria-hidden="true">YW</div>
+            <div>
+              <strong>About Yang Wang</strong>
+              <p>
+                Yang Wang is the founder of IntelliThing. He previously led AI
+                innovation and merchant intelligence strategy at Visa, a global
+                payments company. His consulting work in data science and machine
+                learning model development has included Kaiser Permanente, Johnson
+                Controls International, and GE HealthCare. His AI venture was
+                <a href="https://www.google.com/ads/publisher/stories/crowdlotto/">
+                  featured in a Google for Publishers customer story
+                </a>.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-shell footer-inner">
+        <span>&copy; 2018&ndash;2026 IntelliThing Inc.</span>
+        <a href="./">More IntelliThing Insights</a>
+      </div>
+    </footer>
+    <script src="share.js" defer></script>
+  </body>
+</html>
