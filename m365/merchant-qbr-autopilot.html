@@ -289,8 +289,13 @@
           <div class="copy-row">
             <a class="app-name-chip" id="qbr-app-name"
                href="https://marketplace.microsoft.com/en-us/product/WA200010195"
+               title="View on Microsoft Marketplace"
+               aria-label="Merchant QBR AutoPilot — view on Microsoft Marketplace"
                data-track="qbr_appsource_click" data-cta-location="hero_install_strip_chip">Merchant QBR AutoPilot</a>
-            <button type="button" class="btn-copy" id="qbr-copy-app-name" data-cta-location="hero_install_strip">Copy name</button>
+            <button type="button" class="btn-copy" id="qbr-copy-app-name"
+                    title="Copy the exact app name to search your own app store"
+                    aria-label="Copy app name Merchant QBR AutoPilot"
+                    data-cta-location="hero_install_strip">Copy name</button>
           </div>
         </div>
       </section>
@@ -422,8 +427,13 @@
               <div class="copy-row" style="margin: 6px 0 14px;">
                 <a class="app-name-chip"
                    href="https://marketplace.microsoft.com/en-us/product/WA200010195"
+                   title="View on Microsoft Marketplace"
+                   aria-label="Merchant QBR AutoPilot — view on Microsoft Marketplace"
                    data-track="qbr_appsource_click" data-cta-location="install_section_chip">Merchant QBR AutoPilot</a>
-                <button type="button" class="btn-copy" id="qbr-copy-app-name-install" data-cta-location="install_section">Copy name</button>
+                <button type="button" class="btn-copy" id="qbr-copy-app-name-install"
+                        title="Copy the exact app name to search your own app store"
+                        aria-label="Copy app name Merchant QBR AutoPilot"
+                        data-cta-location="install_section">Copy name</button>
               </div>
               <div class="cta-row">
                 <a class="btn btn-secondary" href="https://www.intellithing.com/m365/it-admin-merchant-qbr-autopilot.html?utm_source=qbr_product_page&utm_medium=internal_link&utm_campaign=merchant_qbr_autopilot&utm_content=install_section_admin_guide"
@@ -569,8 +579,13 @@
           btn.addEventListener('click', function () {
             function done() {
               var original = btn.textContent;
+              var originalLabel = btn.getAttribute('aria-label');
               btn.textContent = 'Copied ✓';
-              setTimeout(function () { btn.textContent = original; }, 2000);
+              btn.setAttribute('aria-label', 'Copied app name ' + APP_NAME);
+              setTimeout(function () {
+                btn.textContent = original;
+                if (originalLabel) btn.setAttribute('aria-label', originalLabel);
+              }, 2000);
             }
             if (navigator.clipboard && navigator.clipboard.writeText) {
               navigator.clipboard.writeText(APP_NAME).then(done, done);
