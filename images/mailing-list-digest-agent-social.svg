@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef5ff"/>
+      <stop offset="0.58" stop-color="#f7f9fc"/>
+      <stop offset="1" stop-color="#dce9ff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#1d4ed8" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#1d4ed8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <circle cx="1010" cy="105" r="310" fill="url(#glow)"/>
+  <circle cx="1105" cy="555" r="220" fill="url(#glow)"/>
+  <rect x="760" y="150" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.85"/><rect x="772" y="159" width="60" height="6" rx="3" fill="#94a3b8" opacity="0.85"/><rect x="760" y="188" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.78"/><rect x="772" y="197" width="97" height="6" rx="3" fill="#94a3b8" opacity="0.78"/><rect x="760" y="226" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.71"/><rect x="772" y="235" width="64" height="6" rx="3" fill="#94a3b8" opacity="0.71"/><rect x="760" y="264" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.64"/><rect x="772" y="273" width="101" height="6" rx="3" fill="#94a3b8" opacity="0.64"/><rect x="760" y="302" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.57"/><rect x="772" y="311" width="68" height="6" rx="3" fill="#94a3b8" opacity="0.57"/><rect x="760" y="340" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.50"/><rect x="772" y="349" width="105" height="6" rx="3" fill="#94a3b8" opacity="0.50"/><rect x="760" y="378" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.43"/><rect x="772" y="387" width="72" height="6" rx="3" fill="#94a3b8" opacity="0.43"/><rect x="760" y="416" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.36"/><rect x="772" y="425" width="109" height="6" rx="3" fill="#94a3b8" opacity="0.36"/><rect x="760" y="454" width="150" height="24" rx="6" fill="#ffffff" stroke="#c7d4e8" stroke-width="2" opacity="0.29"/><rect x="772" y="463" width="76" height="6" rx="3" fill="#94a3b8" opacity="0.29"/>
+  <path d="M922 320 H962" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round"/>
+  <path d="M952 308 L966 320 L952 332" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(982 214)">
+    <rect width="168" height="212" rx="14" fill="#ffffff" stroke="#1e3a5f" stroke-width="3"/>
+    <rect x="16" y="18" width="110" height="10" rx="5" fill="#1e3a5f"/>
+    <rect x="16" y="50" width="34" height="12" rx="6" fill="#fda29b"/><rect x="58" y="52" width="92" height="8" rx="4" fill="#94a3b8"/>
+    <rect x="16" y="78" width="34" height="12" rx="6" fill="#fda29b"/><rect x="58" y="80" width="80" height="8" rx="4" fill="#94a3b8"/>
+    <rect x="16" y="106" width="34" height="12" rx="6" fill="#fec84b"/><rect x="58" y="108" width="88" height="8" rx="4" fill="#94a3b8"/>
+    <rect x="16" y="134" width="34" height="12" rx="6" fill="#d0d5dd"/><rect x="58" y="136" width="70" height="8" rx="4" fill="#94a3b8"/>
+    <rect x="16" y="166" width="136" height="28" rx="8" fill="#dcfae6"/>
+  </g>
+  <g transform="translate(82 74)" fill="none" stroke="#1261b5" stroke-width="5">
+    <circle cx="26" cy="26" r="7" fill="#1261b5" stroke="none"/>
+    <path d="M26 0 V52 M0 26 H52 M8 8 L44 44 M44 8 L8 44"/>
+    <circle cx="26" cy="0" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="26" cy="52" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="0" cy="26" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="52" cy="26" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="8" cy="8" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="44" cy="44" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="44" cy="8" r="4" fill="#1261b5" stroke="none"/>
+    <circle cx="8" cy="44" r="4" fill="#1261b5" stroke="none"/>
+  </g>
+  <text x="155" y="113" fill="#1e3a5f" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="34" font-weight="750" letter-spacing="4">INTELLITHING</text>
+  <text x="82" y="232" fill="#1d4ed8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="22" font-weight="750" letter-spacing="3">MICROSOFT 365 COPILOT · EARLY RESEARCH</text>
+  <text x="82" y="318" fill="#162033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="60" font-weight="760">100 emails in a folder.</text>
+  <text x="82" y="390" fill="#162033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="60" font-weight="760">One briefing a day.</text>
+  <text x="82" y="470" fill="#5d6b82" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="28">Daily Mailing List Digest Agent</text>
+  <text x="82" y="512" fill="#5d6b82" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="28">Would you use it? One-minute feedback.</text>
+</svg>

@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daily Mailing List Digest Agent | IntelliThing</title>
+    <meta
+      name="description"
+      content="Mailing lists you filtered into folders, summarized into one daily email of what changed yesterday. An early-stage Microsoft 365 Copilot agent. Tell us whether you need it."
+    />
+    <meta name="keywords" content="Microsoft 365 Copilot, Copilot agent, email digest, mailing list summary, AI digest, information overload, Outlook, daily briefing" />
+    <link rel="canonical" href="https://www.intellithing.com/m365/mailing-list-digest-agent.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IntelliThing" />
+    <meta property="og:title" content="Daily Mailing List Digest Agent: would you use it?" />
+    <meta property="og:description" content="You filtered the mailing lists into folders. Now you miss what changed. One daily email that tells you. One-minute feedback form." />
+    <meta property="og:url" content="https://www.intellithing.com/m365/mailing-list-digest-agent.html" />
+    <meta property="og:image" content="https://www.intellithing.com/images/mailing-list-digest-agent-social.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Daily Mailing List Digest Agent: would you use it?" />
+    <meta name="twitter:description" content="You filtered the mailing lists into folders. Now you miss what changed. One daily email that tells you. One-minute feedback form." />
+    <meta name="twitter:image" content="https://www.intellithing.com/images/mailing-list-digest-agent-social.png" />
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --ink: #162033;
+        --muted: #5d6b82;
+        --line: #dbe2ec;
+        --brand: #1e3a5f;
+        --brand-dark: #152c47;
+        --accent: #1d4ed8;
+        --soft: #e8f0fe;
+        --high: #b42318;
+        --high-bg: #fef3f2;
+        --med: #b54708;
+        --med-bg: #fffaeb;
+        --low: #475467;
+        --low-bg: #f2f4f7;
+        --ok: #067647;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(180deg, #eff6ff 0%, var(--bg) 34%, #ffffff 100%);
+        color: var(--ink);
+        line-height: 1.6;
+      }
+
+      a { color: var(--accent); }
+
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 20px 72px;
+      }
+
+      .hero { padding: 64px 0 28px; }
+
+      .eyebrow-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        height: 28px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: var(--soft);
+        color: var(--brand-dark);
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .eyebrow-logo {
+        height: 22px;
+        width: auto;
+        display: block;
+        opacity: 0.85;
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 480px) {
+        .eyebrow-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+      }
+
+      h1 {
+        margin: 18px 0 14px;
+        font-size: clamp(34px, 6vw, 56px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .lead {
+        max-width: 760px;
+        font-size: 19px;
+        color: var(--muted);
+      }
+
+      .lead strong { color: var(--ink); }
+
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        font: inherit;
+        font-weight: 600;
+        border: 0;
+        cursor: pointer;
+      }
+
+      .btn-primary { background: var(--brand); color: #fff; }
+      .btn-primary:hover { background: var(--brand-dark); }
+      .btn-primary:disabled { opacity: 0.6; cursor: default; }
+      .btn-secondary {
+        background: #fff;
+        color: var(--accent);
+        border: 1px solid var(--line);
+      }
+
+      .status-strip {
+        margin-top: 24px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 18px;
+      }
+
+      .status-strip p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 14px 40px rgba(22, 32, 51, 0.05);
+        min-width: 0;
+      }
+
+      .span-12 { grid-column: span 12; }
+      .span-7  { grid-column: span 7; }
+      .span-5  { grid-column: span 5; }
+
+      h2 { margin: 0 0 12px; font-size: 28px; line-height: 1.2; }
+      h3 { margin: 0 0 10px; font-size: 20px; }
+
+      p { margin: 0 0 12px; }
+
+      ul, ol { margin: 12px 0 0 20px; padding: 0; }
+      li + li { margin-top: 8px; }
+
+      .kicker {
+        color: var(--brand-dark);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .mini { color: var(--muted); font-size: 14px; }
+
+      .flow { display: grid; gap: 12px; margin-top: 16px; }
+
+      .step {
+        background: #f8fafc;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 16px;
+      }
+
+      .step strong { display: block; margin-bottom: 4px; }
+
+      .step.gap {
+        background: var(--high-bg);
+        border-color: #fecdca;
+      }
+
+      /* ------------------------------------------------ sample digest (email) */
+      .email {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-top: 16px;
+        background: #fff;
+      }
+
+      .email-head {
+        background: #f8fafc;
+        border-bottom: 1px solid var(--line);
+        padding: 14px 18px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .email-head div + div { margin-top: 2px; }
+      .email-head b { color: var(--ink); font-weight: 600; }
+      .email-subject { font-size: 17px; color: var(--ink); font-weight: 700; margin-top: 6px !important; }
+
+      .email-body { padding: 20px 18px 8px; }
+
+      .email-body h4 {
+        margin: 22px 0 10px;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--brand-dark);
+      }
+
+      .email-body h4:first-child { margin-top: 0; }
+
+      .theme {
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .dev {
+        border-left: 3px solid var(--line);
+        padding: 2px 0 2px 14px;
+        margin: 0 0 16px;
+      }
+
+      .dev-title { font-weight: 600; }
+      .dev p { margin: 4px 0 0; color: #344054; }
+
+      .signal {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        border-radius: 999px;
+        padding: 1px 9px;
+        margin-right: 6px;
+        vertical-align: 1px;
+        white-space: nowrap;
+      }
+
+      .signal.high { color: var(--high); background: var(--high-bg); }
+      .signal.med { color: var(--med); background: var(--med-bg); }
+      .signal.low { color: var(--low); background: var(--low-bg); }
+      .dev.high { border-left-color: #fda29b; }
+      .dev.med { border-left-color: #fec84b; }
+
+      .since {
+        background: var(--soft);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 15px;
+      }
+
+      .takeaway {
+        background: #f0fdf4;
+        border: 1px solid #abefc6;
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+
+      .email-foot {
+        border-top: 1px solid var(--line);
+        padding: 12px 18px;
+        font-size: 13px;
+        color: var(--muted);
+        background: #f8fafc;
+      }
+
+      .ref { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+      /* ------------------------------------------------------- feedback form */
+      .q {
+        border: 0;
+        margin: 0;
+        padding: 20px 0;
+        border-top: 1px solid var(--line);
+        min-width: 0;
+      }
+
+      .q:first-of-type { border-top: 0; padding-top: 8px; }
+
+      .q legend, .q > label.qlabel {
+        display: block;
+        font-weight: 650;
+        font-size: 17px;
+        padding: 0;
+        margin-bottom: 4px;
+      }
+
+      .q .hint { color: var(--muted); font-size: 14px; margin: 0 0 10px; }
+      .qnum { color: var(--accent); margin-right: 6px; }
+
+      .opts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .opt {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+        cursor: pointer;
+        background: #fff;
+        font-size: 15px;
+        line-height: 1.4;
+      }
+
+      .opt:hover { border-color: #b2c4dd; }
+      .opt input { margin: 2px 0 0; flex-shrink: 0; accent-color: var(--brand); }
+      .opt:has(input:checked) { border-color: var(--brand); background: #f5f8ff; }
+
+      textarea, input[type="email"], input[type="text"] {
+        width: 100%;
+        font: inherit;
+        font-size: 16px;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #fff;
+        margin-top: 10px;
+      }
+
+      textarea { min-height: 96px; resize: vertical; }
+      textarea:focus, input:focus { outline: 2px solid #93b4f5; outline-offset: 1px; border-color: var(--accent); }
+
+      .subq { margin-top: 14px; font-size: 15px; font-weight: 600; }
+
+      .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+      .submit-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+      }
+
+      .form-status { margin: 0; font-size: 15px; }
+      .form-status.ok { color: var(--ok); font-weight: 600; }
+      .form-status.err { color: var(--high); }
+
+      .thanks {
+        display: none;
+        text-align: center;
+        padding: 32px 12px;
+      }
+
+      .thanks h3 { font-size: 24px; }
+
+      .footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
+
+      @media (max-width: 820px) {
+        .span-7, .span-5 { grid-column: span 12; }
+      }
+
+      @media (max-width: 480px) {
+        .card { padding: 18px; }
+        .email-body { padding: 16px 14px 4px; }
+        .opts { grid-template-columns: 1fr; }
+      }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LR50K84QEZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-LR50K84QEZ');
+    </script>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div class="eyebrow-row">
+          <span class="eyebrow">Microsoft 365 Copilot agent · early research</span>
+          <a href="https://www.intellithing.com/">
+            <img class="eyebrow-logo" src="../images/logo.png" alt="IntelliThing" />
+          </a>
+        </div>
+        <h1>Daily Mailing List Digest Agent</h1>
+        <p class="lead">
+          Don't read 100 notifications. Read one briefing.
+          The mailing lists you filtered into folders, summarized every morning into
+          <strong>one email about what changed yesterday</strong> and what deserves your attention.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#feedback" data-track="digest_cta_click" data-cta-location="hero_feedback">
+            Give feedback (1 minute)
+          </a>
+          <a class="btn btn-secondary" href="#sample" data-track="digest_cta_click" data-cta-location="hero_sample">
+            See a sample digest
+          </a>
+        </div>
+        <div class="status-strip">
+          <strong>This isn't built yet. We're asking whether it should be.</strong>
+          <p>
+            Before building it, we want to hear from people who live with this problem, including
+            "Microsoft already does this, here's how" and "I tried that and it didn't work."
+          </p>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="The problem">
+        <article class="card span-7">
+          <p class="kicker">The Problem</p>
+          <h2>Inbox rules remove the noise, and your awareness goes with it</h2>
+          <div class="flow">
+            <div class="step">
+              <strong>1. The emails pile up</strong>
+              Industry newsletters, vendor and partner updates, internal announcement lists,
+              project distribution lists, GitHub notifications. Each one matters occasionally. Together they bury your inbox.
+            </div>
+            <div class="step">
+              <strong>2. You create a rule</strong>
+              Everything from the list goes to its own folder. Your inbox is quiet again.
+            </div>
+            <div class="step gap">
+              <strong>3. You stop knowing what's happening</strong>
+              A decision gets made, a proposal moves forward, a deadline is announced, and you
+              find out weeks later. Opening the folder means facing hundreds of unread messages.
+            </div>
+            <div class="step">
+              <strong>4. You ask Copilot to summarize it, every morning</strong>
+              That helps, but you have to remember to ask, retype the prompt, and it doesn't
+              know what it told you yesterday.
+            </div>
+          </div>
+        </article>
+
+        <article class="card span-5">
+          <p class="kicker">The Idea</p>
+          <h2>The summary shows up on its own</h2>
+          <p>An agent in your Microsoft 365 tenant that:</p>
+          <ul>
+            <li>reads only the folders you pick</li>
+            <li>runs every morning on its own</li>
+            <li>groups yesterday's messages by topic and ranks them by importance</li>
+            <li>tracks topics across days, so it says what <em>moved</em>, not just what was said</li>
+            <li>learns which topics you care about over time</li>
+            <li>delivers one email to your inbox</li>
+          </ul>
+          <p class="mini" style="margin-top: 16px;">
+            Planned approach: a Microsoft 365 Copilot agent for setup, Microsoft Graph for
+            reading the selected folders, and email delivery. That's one of the things we're
+            asking about below.
+          </p>
+        </article>
+      </section>
+
+      <section class="grid" id="sample" aria-label="Sample digest" style="margin-top: 20px;">
+        <article class="card span-12">
+          <p class="kicker">Sample Digest</p>
+          <h2>What one morning looks like</h2>
+          <p class="mini">
+            Built by hand from real public activity on
+            <a href="https://github.com/Universal-Commerce-Protocol/ucp" rel="noopener">Universal-Commerce-Protocol/ucp</a>,
+            the open specification for AI-driven commerce, on September 30, 2026. Imagine its GitHub notifications going to a folder you never open.
+          </p>
+
+          <div class="email">
+            <div class="email-head">
+              <div><b>From:</b> Daily Digest Agent</div>
+              <div><b>Folder:</b> UCP (GitHub notifications)</div>
+              <div class="email-subject">UCP yesterday: Lodging goes public, a builder's guide lands, and 4 stale PRs are closed</div>
+            </div>
+            <div class="email-body">
+              <h4>Theme</h4>
+              <p class="theme">
+                UCP is widening beyond shopping: Lodging is now publicly announced as a draft.
+                Maintainers also cleared out old pull requests and published the first official guide for building UCP servers.
+              </p>
+
+              <h4>Key developments</h4>
+              <div class="dev high">
+                <div class="dev-title"><span class="signal high">HIGH</span>Lodging Booking announced as a draft spec on ucp.dev</div>
+                <p>
+                  The capability merged on Sep 24 <span class="ref">(#780)</span> and is now on the public site <span class="ref">(#875)</span>.
+                  The proposal for structured cancellation schedules is still open <span class="ref">(#807, #861)</span>:
+                  a short-term-rental operator posted a real policy that the draft can't fully represent, and the author is tightening the rules in response.
+                </p>
+              </div>
+              <div class="dev high">
+                <div class="dev-title"><span class="signal high">HIGH</span>Official getting-started guide for building UCP servers merged</div>
+                <p>
+                  The first official walkthrough for businesses implementing UCP <span class="ref">(#645)</span>.
+                  A backport to the 2026-08-25 release was opened the same day <span class="ref">(#886)</span>.
+                </p>
+              </div>
+              <div class="dev med">
+                <div class="dev-title"><span class="signal med">MEDIUM</span>Four long-idle pull requests closed without merging</div>
+                <p>
+                  Inventory signals <span class="ref">(#403)</span> were replaced by the newer low-stock / quantity / restock proposal <span class="ref">(#605)</span>.
+                  Network-token and PCI-scope guidance <span class="ref">(#367)</span> was overtaken by the card-credential refactor.
+                  The agent rate-limit and MCP error PRs <span class="ref">(#622, #620)</span> need to be resubmitted on a clean branch.
+                </p>
+              </div>
+              <div class="dev med">
+                <div class="dev-title"><span class="signal med">MEDIUM</span>Older release catches up</div>
+                <p>
+                  Web Bot Auth interop <span class="ref">(#829)</span> and shopping permalinks <span class="ref">(#828)</span>
+                  were backported to the 2026-04-08 release.
+                </p>
+              </div>
+              <div class="dev">
+                <div class="dev-title"><span class="signal low">LOW</span>Docs tooling: an upcoming schema-tool release would silently break type links</div>
+                <p>A fix is proposed <span class="ref">(#887, #884)</span>. Only matters if you build the docs.</p>
+              </div>
+
+              <h4>Since your last digest</h4>
+              <p class="since">
+                Media variants (images, video, external video, 3D) merged on Sep 29 <span class="ref">(#690)</span>.
+                You flagged product data as a priority last week, so this stays on your radar until it ships in a release.
+              </p>
+
+              <h4>Worth reading</h4>
+              <ul style="margin-top: 0;">
+                <li>
+                  <strong>Draft "feed" capability for bulk catalog access</strong> <span class="ref">(#866)</span>:
+                  reviewers are asking for usage terms on the feed and for delta updates. This is where catalog distribution to AI platforms is being decided.
+                </li>
+                <li>
+                  <strong>Cancellation schedule thread</strong> <span class="ref">(#807)</span>:
+                  a clear real-world example of where a schema-valid policy can still be wrong.
+                </li>
+              </ul>
+
+              <h4>Takeaway</h4>
+              <p class="takeaway">
+                If you sell or build on UCP: Lodging is officially in draft, and there's now a guide for building a server.
+                If you had a PR waiting for review, check whether it was closed yesterday; the reason is in the closing comment.
+              </p>
+            </div>
+            <div class="email-foot">
+              20+ issue and pull-request threads had activity. 5 developments, 2 worth reading, 1 carried over from earlier.
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid" id="feedback" aria-label="Feedback" style="margin-top: 20px;">
+        <article class="card span-12">
+          <p class="kicker">Feedback</p>
+          <h2>Should this exist? Tell us honestly.</h2>
+          <p class="mini">
+            Four questions, all optional. "No, Microsoft already does this" is a useful answer.
+            About a minute.
+          </p>
+
+          <form id="digest-form" novalidate>
+            <input type="hidden" name="form_type" value="digest_agent_feedback" />
+            <input type="hidden" name="_subject" value="Mailing list digest agent feedback" />
+            <input type="hidden" name="source_page" value="/m365/mailing-list-digest-agent.html" />
+            <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" />
+            <input type="hidden" name="utm_content" /><input type="hidden" name="utm_term" /><input type="hidden" name="referrer_host" />
+            <div class="hp" aria-hidden="true">
+              <label>Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <fieldset class="q">
+              <legend><span class="qnum">1.</span>What best describes you?</legend>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="role" value="business_user" /> Business user or manager</label>
+                <label class="opt"><input type="radio" name="role" value="executive" /> Executive</label>
+                <label class="opt"><input type="radio" name="role" value="it_admin" /> IT admin</label>
+                <label class="opt"><input type="radio" name="role" value="developer" /> Developer or engineer</label>
+                <label class="opt"><input type="radio" name="role" value="consultant_partner" /> Consultant or Microsoft partner</label>
+                <label class="opt"><input type="radio" name="role" value="other" /> Other</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="q">
+              <legend><span class="qnum">2.</span>How do you keep up with the emails you've filtered into folders today?</legend>
+              <div class="opts">
+                <label class="opt"><input type="checkbox" name="tried" value="rules_and_skim" /> Inbox rules and an occasional skim</label>
+                <label class="opt"><input type="checkbox" name="tried" value="copilot_scheduled_prompts" /> Copilot scheduled prompts</label>
+                <label class="opt"><input type="checkbox" name="tried" value="copilot_chat_manual" /> Asking Copilot by hand</label>
+                <label class="opt"><input type="checkbox" name="tried" value="outlook_copilot_summary" /> Outlook's Copilot summaries</label>
+                <label class="opt"><input type="checkbox" name="tried" value="power_automate_copilot_studio" /> Power Automate or Copilot Studio</label>
+                <label class="opt"><input type="checkbox" name="tried" value="other_ai_tool" /> Another AI tool</label>
+              </div>
+              <p class="subq">What works, and where does it fall short?</p>
+              <textarea name="tried_result" maxlength="2000" aria-label="What works and where it falls short"></textarea>
+            </fieldset>
+
+            <fieldset class="q">
+              <legend><span class="qnum">3.</span>If a digest like the sample arrived every morning, would you read it?</legend>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="would_use" value="daily" /> Yes, most days</label>
+                <label class="opt"><input type="radio" name="would_use" value="sometimes" /> Sometimes</label>
+                <label class="opt"><input type="radio" name="would_use" value="no" /> No</label>
+                <label class="opt"><input type="radio" name="would_use" value="already_solved" /> I already have something that does this</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="q">
+              <legend><span class="qnum">4.</span>Want to try the beta?</legend>
+              <p class="hint">Leave an email and we'll write when there's something to try. No newsletter.</p>
+              <input type="email" name="email" autocomplete="email" placeholder="you@company.com (optional)" maxlength="200" aria-label="Email address" />
+              <p class="subq">Anything else?</p>
+              <textarea name="comments" maxlength="2000" aria-label="Additional comments"></textarea>
+            </fieldset>
+
+            <div class="submit-row">
+              <button class="btn btn-primary" type="submit">Send feedback</button>
+              <p class="form-status" role="status" aria-live="polite"></p>
+            </div>
+            <p class="mini" style="margin-top: 12px;">
+              Sent to IntelliThing's inbox through Formspree. Your email and written answers are never sent to analytics.
+            </p>
+          </form>
+
+          <div class="thanks" id="digest-thanks" tabindex="-1">
+            <h3>Thank you.</h3>
+            <p>Every response gets read. If you left an email, we'll write when there's a beta.</p>
+            <p class="mini">Know someone with an inbox full of filtered folders? Send them this page.</p>
+          </div>
+        </article>
+      </section>
+
+      <p class="footer">
+        IntelliThing builds Microsoft 365 Copilot agents, including
+        <a href="merchant-qbr-autopilot.html?utm_source=digest_agent_page&amp;utm_medium=internal_link&amp;utm_content=footer">Merchant QBR AutoPilot</a>
+        and <a href="loyalty-manager-copilot.html?utm_source=digest_agent_page&amp;utm_medium=internal_link&amp;utm_content=footer">Loyalty Manager Copilot</a>.
+        &nbsp;·&nbsp;
+        <a href="mailto:info@intellithing.com?subject=Mailing%20list%20digest%20agent">info@intellithing.com</a>
+      </p>
+    </main>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var FORMSPREE_URL = 'https://formspree.io/f/xaenzzko';
+        var PRODUCT = 'mailing_list_digest_agent';
+        var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+        function track(name, params) {
+          if (typeof window.gtag !== 'function') return;
+          var merged = { product: PRODUCT, page_path: window.location.pathname };
+          for (var k in params || {}) merged[k] = params[k];
+          window.gtag('event', name, merged);
+        }
+
+        track('digest_page_view', {});
+
+        document.addEventListener('click', function (e) {
+          var el = e.target.closest && e.target.closest('[data-track]');
+          if (el) track(el.getAttribute('data-track'), { cta_location: el.getAttribute('data-cta-location') || '' });
+        });
+
+        // Tells apart Tech Community, LinkedIn, Reddit, etc. Share links like ?utm_source=techcommunity.
+        function readAttribution() {
+          var params = new URLSearchParams(window.location.search);
+          var out = {};
+          UTM_KEYS.forEach(function (k) { if (params.get(k)) out[k] = params.get(k).slice(0, 100); });
+          if (document.referrer) {
+            try {
+              var host = new URL(document.referrer).hostname;
+              if (host !== window.location.hostname) out.referrer_host = host;
+            } catch (e) {}
+          }
+          return out;
+        }
+
+        var sampleSeen = false;
+        var sample = document.getElementById('sample');
+        if ('IntersectionObserver' in window && sample) {
+          new IntersectionObserver(function (entries, obs) {
+            if (!sampleSeen && entries[0].isIntersecting) {
+              sampleSeen = true;
+              track('digest_sample_view', {});
+              obs.disconnect();
+            }
+          }, { threshold: 0.4 }).observe(sample);
+        }
+
+        var form = document.getElementById('digest-form');
+        var attribution = readAttribution();
+        Object.keys(attribution).forEach(function (k) {
+          var input = form.querySelector('input[name="' + k + '"]');
+          if (input) input.value = attribution[k];
+        });
+
+        var started = false;
+        form.addEventListener('focusin', function () {
+          if (started) return;
+          started = true;
+          track('digest_form_start', {});
+        });
+
+        // Formspree keeps only the last value of a repeated field, so join checkbox groups.
+        function buildPayload() {
+          var raw = new FormData(form);
+          var data = new FormData();
+          var seen = {};
+          raw.forEach(function (value, key) {
+            if (seen[key]) return;
+            seen[key] = true;
+            var all = raw.getAll(key).filter(function (v) { return String(v).trim() !== ''; });
+            if (all.length) data.append(key, all.join(', '));
+          });
+          return data;
+        }
+
+        var status = form.querySelector('.form-status');
+        var button = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = form.querySelector('input[name="email"]');
+          if (email.value && !email.checkValidity()) {
+            status.textContent = 'That email address doesn’t look right. Fix it or leave it blank.';
+            status.className = 'form-status err';
+            email.focus();
+            return;
+          }
+          var data = buildPayload();
+          var answered = 0;
+          data.forEach(function (v, k) {
+            if (k.charAt(0) !== '_' && ['form_type', 'source_page', 'referrer_host'].indexOf(k) < 0 && k.indexOf('utm_') !== 0) answered++;
+          });
+          if (!answered) {
+            status.textContent = 'Answer at least one question first.';
+            status.className = 'form-status err';
+            return;
+          }
+          button.disabled = true;
+          button.textContent = 'Sending…';
+          status.textContent = '';
+          status.className = 'form-status';
+          fetch(FORMSPREE_URL, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+            .then(function (r) {
+              if (!r.ok) throw new Error('status ' + r.status);
+              // Structured answers only; no email or free text.
+              track('digest_form_submit', {
+                role: data.get('role') || 'unspecified',
+                would_use: data.get('would_use') || 'unspecified',
+                left_email: data.get('email') ? 'yes' : 'no',
+                questions_answered: answered
+              });
+              form.style.display = 'none';
+              var thanks = document.getElementById('digest-thanks');
+              thanks.style.display = 'block';
+              thanks.focus();
+            })
+            .catch(function () {
+              status.innerHTML = 'That didn’t send. Please email <a href="mailto:info@intellithing.com?subject=Mailing%20list%20digest%20agent%20feedback">info@intellithing.com</a> instead.';
+              status.className = 'form-status err';
+              button.disabled = false;
+              button.textContent = 'Send feedback';
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>
